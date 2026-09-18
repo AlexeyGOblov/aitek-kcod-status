@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Статус продвижения КЦОД · АйТек · выпуск 1</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #eef1f4;
+    --surface: #ffffff;
+    --surface-2: #f7f9fb;
+    --ink: #0f1e29;
+    --ink-2: #3d5260;
+    --muted: #6b8090;
+    --line: #d3dce3;
+    --line-strong: #adbcc8;
+    --accent: #176bb2;
+    --accent-deep: #0e4472;
+    --accent-soft: #e2edf7;
+    --good: #2c7a52;
+    --warn: #9a6608;
+    --warn-soft: #fbf1dc;
+    --bad: #a83a2c;
+    --shadow: 0 1px 2px rgba(15, 30, 41, .06), 0 8px 24px -16px rgba(15, 30, 41, .3);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0c1419; --surface: #131e26; --surface-2: #18242d;
+      --ink: #e4ecf1; --ink-2: #b3c4cf; --muted: #7e93a1;
+      --line: #263540; --line-strong: #3a4e5c;
+      --accent: #56a5dd; --accent-deep: #8cc4ec; --accent-soft: #14293b;
+      --good: #57b184; --warn: #d0a147; --warn-soft: #2a2416; --bad: #dd7a6a;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px -18px rgba(0, 0, 0, .9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0c1419; --surface: #131e26; --surface-2: #18242d;
+    --ink: #e4ecf1; --ink-2: #b3c4cf; --muted: #7e93a1;
+    --line: #263540; --line-strong: #3a4e5c;
+    --accent: #56a5dd; --accent-deep: #8cc4ec; --accent-soft: #14293b;
+    --good: #57b184; --warn: #d0a147; --warn-soft: #2a2416; --bad: #dd7a6a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px -18px rgba(0, 0, 0, .9);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; }
+  .wrap {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 20px;
+    padding-block: 44px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+  .num { font-variant-numeric: tabular-nums; }
+  strong { color: var(--ink); font-weight: 600; }
+
+  /* шапка */
+  .head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 12px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+  }
+  h1 {
+    font-size: clamp(32px, 5.4vw, 48px);
+    line-height: 1.08; font-weight: 700; letter-spacing: -.025em;
+    margin: 0; text-wrap: balance;
+  }
+  .lede { font-size: 19px; color: var(--ink-2); max-width: 64ch; margin: 0; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 4px 28px;
+    border-top: 1px solid var(--line); padding-top: 14px;
+    font-size: 13.5px; color: var(--muted);
+  }
+  .meta b { color: var(--ink-2); font-weight: 600; }
+
+  /* главное */
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 26px 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+  .verdict h2 {
+    margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.015em;
+  }
+  .verdict p { margin: 0; color: var(--ink-2); max-width: 68ch; font-size: 17.5px; }
+
+  /* разделы: крупный видимый заголовок */
+  section { display: flex; flex-direction: column; padding-top: 30px; margin-top: 18px; border-top: 2px solid var(--line-strong); }
+  section > h2 {
+    font-size: clamp(24px, 3.4vw, 31px);
+    line-height: 1.18; font-weight: 700; letter-spacing: -.022em;
+    margin: 0 0 6px; color: var(--ink); text-wrap: balance;
+    display: flex; gap: 14px; align-items: baseline;
+  }
+  section > h2 .n {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 15px; font-weight: 600; color: var(--accent);
+    letter-spacing: 0; flex: none; padding-top: 2px;
+  }
+  .sub { font-size: 16px; color: var(--muted); margin: 0 0 20px; max-width: 66ch; }
+  section > p { margin: 0 0 16px; max-width: 68ch; color: var(--ink-2); }
+  section > p:last-child { margin-bottom: 0; }
+  h3 {
+    font-size: 19px; font-weight: 600; letter-spacing: -.01em;
+    margin: 26px 0 8px; color: var(--ink);
+  }
+
+  /* воронка */
+  .funnel { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 24px 22px 18px; box-shadow: var(--shadow); }
+  .scale-note { font-size: 13.5px; color: var(--muted); margin: 0 0 20px; }
+  .rows { display: flex; flex-direction: column; gap: 3px; }
+  .row { display: grid; grid-template-columns: 172px 1fr 116px; align-items: center; gap: 16px; padding: 8px 0; }
+  .row-name { font-size: 15px; font-weight: 500; line-height: 1.3; }
+  .row-name span { display: block; font-size: 12px; color: var(--muted); font-weight: 400; }
+  .track { position: relative; height: 28px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
+  .bar { position: absolute; inset: 0 auto 0 0; background: var(--accent); border-radius: 2px 0 0 2px; opacity: .85; }
+  .bar.thin { background: var(--bad); opacity: 1; }
+  .row-val { text-align: right; font-size: 17px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .row-val small { display: block; font-size: 11.5px; font-weight: 400; color: var(--muted); }
+  .ticks { display: grid; grid-template-columns: 172px 1fr 116px; gap: 16px; margin-top: 10px; border-top: 1px solid var(--line); padding-top: 7px; }
+  .ticks-inner { display: flex; justify-content: space-between; font-size: 10.5px; color: var(--muted); letter-spacing: .04em; }
+  .here { color: var(--muted); font-weight: 500; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  .row.now { background: var(--accent-soft); box-shadow: inset 3px 0 0 var(--accent); padding-left: 12px; margin-left: -12px; border-radius: 0 2px 2px 0; }
+  .youare { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 10.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-deep); font-weight: 600; display: block; margin-top: 3px; }
+
+  /* таблицы */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 580px; }
+  th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; background: var(--surface-2);
+    border-bottom: 1px solid var(--line-strong); line-height: 1.4;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr.pick { background: var(--accent-soft); }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.n { font-weight: 600; }
+  td.zero { color: var(--bad); font-weight: 700; }
+  .note { font-size: 14px; color: var(--muted); max-width: 68ch; margin: 14px 0 0; }
+
+  /* карточки */
+  .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+  .box { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow); }
+  .box-label { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+  .box-num { font-size: 34px; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1.05; }
+  .box-sub { font-size: 14px; color: var(--ink-2); }
+
+  /* списки */
+  ul.clean { margin: 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; }
+  ul.clean li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; font-size: 16.5px; color: var(--ink-2); }
+  ul.clean li .mark { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; color: var(--accent); padding-top: 4px; font-weight: 600; }
+  ul.plain { margin: 0; padding-left: 22px; color: var(--ink-2); display: flex; flex-direction: column; gap: 10px; }
+
+  .examples { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 18px; }
+  .ex { border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px; background: var(--surface); }
+  .ex h4 { margin: 0 0 10px; font-size: 14px; font-weight: 600; }
+  .ex ul { margin: 0; padding-left: 0; list-style: none; font-size: 14px; color: var(--ink-2); display: flex; flex-direction: column; gap: 6px; }
+  .ex li { display: flex; justify-content: space-between; gap: 12px; }
+  .ex li b { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .ex.bad { border-left: 3px solid var(--bad); }
+  .ex.ok { border-left: 3px solid var(--good); }
+
+  .pill { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: .03em; padding: 3px 9px; border-radius: 2px; white-space: nowrap; }
+  .pill.ok { background: color-mix(in srgb, var(--good) 14%, transparent); color: var(--good); }
+  .pill.wait { background: var(--warn-soft); color: var(--warn); }
+  .pill.stop { background: color-mix(in srgb, var(--bad) 13%, transparent); color: var(--bad); }
+
+  .caveat { background: var(--surface-2); border: 1px dashed var(--line-strong); border-radius: 4px; padding: 22px 24px; margin-top: 30px; }
+  .caveat h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
+  .caveat ul { margin: 0; padding-left: 20px; font-size: 15.5px; color: var(--ink-2); display: flex; flex-direction: column; gap: 10px; }
+
+  .ask { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 4px; padding: 24px 26px; margin-top: 18px; }
+  .ask h2 { margin: 0 0 6px; font-size: 22px; font-weight: 700; }
+  .ask p { margin: 0 0 16px; color: var(--ink-2); font-size: 16px; max-width: 68ch; }
+  .ask ol { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 12px; font-size: 16.5px; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 34px; font-size: 13.5px; color: var(--muted); }
+  footer p { margin: 0 0 8px; max-width: 78ch; }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    .row, .ticks { grid-template-columns: 1fr 92px; }
+    .row { grid-template-areas: "name val" "track track"; row-gap: 7px; }
+    .row-name { grid-area: name; }
+    .row-val { grid-area: val; }
+    .track { grid-area: track; }
+    .ticks { display: none; }
+    section > h2 { flex-direction: column; gap: 2px; }
+    .verdict, .ask, .caveat { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <div class="eyebrow">
+      <span>Контейнерные ЦОД · АйТек</span>
+      <span>Выпуск 1</span>
+      <span>18 сентября 2026</span>
+    </div>
+    <h1>Статус продвижения КЦОД</h1>
+    <p class="lede">Что мы купили за 73 185 ₽ рекламы, сколько заявок пришло на страницу контейнерных ЦОД и сколько нужно денег и времени, чтобы ответить на вопрос «работает этот канал или нет».</p>
+    <div class="meta">
+      <span><b>Период замера:</b> 30 дней, 19.08 - 17.09.2026</span>
+      <span><b>Реклама работала:</b> 13.08 - 18.09, пять недель, сейчас остановлена</span>
+      <span><b>Расход:</b> 73 185 ₽</span>
+    </div>
+  </header>
+
+  <div class="verdict">
+    <h2>Главное</h2>
+    <p>За месяц реклама привела на страницу КЦОД 20 тысяч человек и <strong>одну заявку</strong>. Из 73 185 ₽ расхода 40 414 ₽ ушли в рекламную сеть Яндекса, на баннеры на чужих сайтах: 18 886 визитов, ни одной заявки, 29 секунд на странице в среднем.</p>
+    <p>На поиске из 5 123 показов <strong>только 270</strong> пришлись на слова, которыми называют наш товар. Остальные показы - это «дата центр», «call center», «дата центр в массачусетсе», «купить бизнес план на цод». По нашим словам потрачено около 10 тыс ₽ из 73 тыс.</p>
+    <p>Пять недель мало, чтобы судить о канале. При нынешней настройке ответа не будет и через год: точных показов набирается 270 в месяц, заявка из них выходит в лучшем случае одна. Сколько денег и времени нужно на честный ответ - в разделе 5.</p>
+  </div>
+
+  <section>
+    <h2><span class="n">01</span>Куда ушли 73 185 ₽</h2>
+    <p class="sub">Расход разложен по тому, что человек набирал в поиске и где увидел баннер.</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Направление</th><th class="n">Показы</th><th class="n">Клики</th><th class="n">Расход</th><th class="n">Доля денег</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Рекламная сеть: баннеры на чужих сайтах</td>
+            <td class="n">552 957</td><td class="n">19 910</td><td class="n">40 414 ₽</td><td class="n">55 %</td>
+          </tr>
+          <tr>
+            <td>Поиск, чужие темы: дата-центры вообще, зарубежные, справочные запросы</td>
+            <td class="n">4 714</td><td class="n">110</td><td class="n">22 362 ₽</td><td class="n">31 %</td>
+          </tr>
+          <tr class="pick">
+            <td>Поиск, наши слова: модульный, контейнерный, мобильный, микро ЦОД, ЦОД под ключ</td>
+            <td class="n">270</td><td class="n">25</td><td class="n">7 339 ₽</td><td class="n">10 %</td>
+          </tr>
+          <tr class="pick">
+            <td>Поиск, покупательские, но общие: ЦОД купить, цена, производство</td>
+            <td class="n">139</td><td class="n">9</td><td class="n">2 549 ₽</td><td class="n">3 %</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Синим выделено то, за что имело смысл платить: 9 888 ₽ из 73 185 ₽. Единственная заявка месяца пришла с поиска. Разбивка по поиску сделана по отчёту Директа о поисковых запросах: 2 181 разная фраза за 30 дней.</p>
+
+    <div class="examples">
+      <div class="ex bad">
+        <h4>За что заплатили на поиске</h4>
+        <ul>
+          <li><span>купить бизнес план на цод</span><b>468 ₽</b></li>
+          <li><span>цена контакт центр, 2 клика</span><b>428 ₽</b></li>
+          <li><span>россельхозбанк дата центр</span><b>314 ₽</b></li>
+          <li><span>дата центр кантри парка химки</span><b>213 ₽</b></li>
+          <li><span>дата центр в массачусетсе</span><b>109 ₽</b></li>
+          <li><span>как связаны дата центры и криптовалюта</span><b>79 ₽</b></li>
+        </ul>
+      </div>
+      <div class="ex ok">
+        <h4>А это попадания в цель</h4>
+        <ul>
+          <li><span>модульные цод, 4 клика</span><b>1 132 ₽</b></li>
+          <li><span>мобильный цод контейнер цена, 3 клика</span><b>1 073 ₽</b></li>
+          <li><span>производство модульных цод, 2 клика</span><b>763 ₽</b></li>
+          <li><span>микро цод в контейнере, 2 клика</span><b>342 ₽</b></li>
+          <li><span>готовый цод в контейнере купить</span><b>290 ₽</b></li>
+          <li><span>контейнерный цод купить</span><b>224 ₽</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span>Как мы считаем заявки</h2>
+    <p class="sub">Вопрос возник не зря: в первой версии этого отчёта сравнение было кривое, и вывод получился слишком радостный.</p>
+
+    <p><strong>Заявка</strong> - это цель «Отправил контактные данные» в Яндекс Метрике: человек заполнил форму на сайте и оставил телефон или почту. Отдельно считаем клик по номеру телефона и клик по адресу почты на странице: это тоже обращение, просто мимо формы. Счётчик 111347702, все числа за 30 дней.</p>
+
+    <p>В первой версии реклама считалась по странице КЦОД, а бесплатный поиск и прямые заходы - по всему сайту. Отсюда взялись «28 заявок из бесплатного поиска». Пересчитали с одним фильтром для всех источников: визит начался со страницы контейнерных ЦОД. <strong>28 бесплатных заявок к КЦОД отношения не имеют</strong>: 30 заявок за месяц пришли на страницу поддержки и 25 на главную, это обращения действующих клиентов.</p>
+
+    <h3>Страница контейнерных ЦОД, 30 дней</h3>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Источник</th><th class="n">Визиты</th><th class="n">Заявка с контактами</th><th class="n">Клик по телефону</th><th class="n">Клик по почте</th><th class="n">Расход</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Реклама, рекламная сеть</td><td class="n">18 886</td><td class="n zero">0</td><td class="n">22</td><td class="n">10</td><td class="n">40 414 ₽</td></tr>
+          <tr><td>Реклама, поиск</td><td class="n">136</td><td class="n">1</td><td class="n">1</td><td class="n">1</td><td class="n">32 771 ₽</td></tr>
+          <tr><td>Прямые заходы</td><td class="n">166</td><td class="n">7</td><td class="n">0</td><td class="n">0</td><td class="n">0 ₽</td></tr>
+          <tr><td>Бесплатный поиск</td><td class="n">125</td><td class="n zero">0</td><td class="n">3</td><td class="n">2</td><td class="n">0 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Три вещи, которые надо знать про эту таблицу</h3>
+    <ul class="plain">
+      <li>Все 8 заявок со страницы КЦОД оставлены с компьютера. С телефонов и планшетов пришло 19 600 визитов и ни одной заявки. 21 из 22 «кликов по телефону» в рекламной сети - тоже с телефонов, при 29 секундах на странице. Похоже на случайные касания, а не на звонки.</li>
+      <li>Бесплатный поиск приводит на страницу 125 человек в месяц, страница стоит на 8-й позиции. Ведут они себя лучше всех: 9 % отказов и 4 минуты на странице против 61 % и 30 секунд у рекламы. Заявок с них за месяц нет, но есть 3 клика по телефону и 2 по почте.</li>
+      <li>7 заявок из прямых заходов - верхняя оценка. Часть из них может оказаться нашими собственными проверками формы, отделить их пока нечем.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span>Реклама и наша же бесплатная выдача</h2>
+    <p class="sub">По части запросов объявление показывалось рядом со ссылкой на ту же самую страницу. Посчитали, сколько это стоило.</p>
+
+    <p>Мы сравнили запросы, по которым показывались объявления, с запросами, по которым сайт видно в бесплатной выдаче. Совпало 42 запроса. По ним реклама собрала 229 показов и 21 клик за <strong>5 403 ₽</strong>, а бесплатная выдача за то же время - 112 показов и 2 клика.</p>
+
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Запрос</th><th class="n">Платных кликов</th><th class="n">Расход</th><th class="n">Наше место в бесплатной выдаче</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>модульные цод</td><td class="n">4</td><td class="n">1 132 ₽</td><td class="n">11,4</td></tr>
+          <tr><td>мобильный цод контейнер цена</td><td class="n">3</td><td class="n">1 073 ₽</td><td class="n">8,0</td></tr>
+          <tr><td>производство модульных цод</td><td class="n">2</td><td class="n">763 ₽</td><td class="n">10,0</td></tr>
+          <tr><td>дата центр купить</td><td class="n">3</td><td class="n">513 ₽</td><td class="n">8,9</td></tr>
+          <tr class="pick"><td>комплектный цод</td><td class="n">1</td><td class="n">379 ₽</td><td class="n">6,0</td></tr>
+          <tr class="pick"><td>контейнерный цод купить</td><td class="n">1</td><td class="n">224 ₽</td><td class="n">4,9</td></tr>
+          <tr class="pick"><td>кцод</td><td class="n">1</td><td class="n">104 ₽</td><td class="n">5,0</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Синим выделены запросы, где бесплатная ссылка и так стояла в верхней части первой страницы.</p>
+
+    <h3>Дважды за одного человека мы платили редко</h3>
+    <p>На этих запросах бесплатная ссылка стоит в среднем на 8-м месте: низ первой страницы или вторая, где её почти не видят. Объявление на 3-4 месте закрывало эту дыру. Настоящее дублирование, когда мы и так наверху, нашлось на трёх запросах: «контейнерный цод купить», «кцод», «комплектный цод». Там платный клик обошёлся в <strong>707 ₽</strong> из 32 771 ₽ поискового расхода, и этих денег можно было не тратить.</p>
+
+    <h3>Зато видно, где те же клики дешевле</h3>
+    <p>За две недели страница КЦОД получила в бесплатной выдаче 930 показов и 49 кликов при среднем месте 8,2. Спрос тот же самый, что покупала реклама. С третьего места страница собирала бы вдвое-втрое больше кликов, и за них никто не платит за клик. Поэтому подъём страницы в бесплатной выдаче стоит в плане отдельным шагом: на этих запросах это дешевле, чем платить 294 ₽ за переход.</p>
+
+    <p class="note">Как посчитано: запросы рекламы - отчёт Директа за 30 дней. Место в бесплатной выдаче - выгрузка Вебмастера от 05.09 по сайту целиком, поэтому по части запросов в выдаче могла стоять другая страница сайта. Строка про 930 показов и место 8,2 снята отдельно, только по странице КЦОД и только по органике: рекламные блоки внутри выдачи из неё исключены.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span>Воронка: где мы сейчас</h2>
+    <p class="sub">Путь рекламного бюджета от показа объявления до договора.</p>
+    <div class="funnel">
+      <p class="scale-note">Шкала логарифмическая: каждое деление - умножение на 10. На обычной шкале последний слой не видно вовсе, а решает сейчас он.</p>
+
+      <div class="rows">
+        <div class="row">
+          <div class="row-name">Показы объявлений<span>сколько раз нас увидели</span></div>
+          <div class="track"><div class="bar" style="width: 95.8%"></div></div>
+          <div class="row-val num">558 135</div>
+        </div>
+        <div class="row">
+          <div class="row-name">Клики<span>сколько перешли на сайт</span></div>
+          <div class="track"><div class="bar" style="width: 71.7%"></div></div>
+          <div class="row-val num">20 056<small>3,6 % от показов</small></div>
+        </div>
+        <div class="row">
+          <div class="row-name">Задержались на странице<span>не ушли за первые секунды</span></div>
+          <div class="track"><div class="bar" style="width: 64.9%"></div></div>
+          <div class="row-val num">7 842<small>39 % от кликов</small></div>
+        </div>
+        <div class="row now">
+          <div class="row-name">Оставили контакты<span>заполнили форму</span><span class="youare">мы здесь</span></div>
+          <div class="track"><div class="bar thin" style="width: 1.2%"></div></div>
+          <div class="row-val num">1<small>0,005 %</small></div>
+        </div>
+        <div class="row">
+          <div class="row-name">Разговор и расчёт<span>дошли до обсуждения</span></div>
+          <div class="track"></div>
+          <div class="row-val"><span class="here">нет данных</span></div>
+        </div>
+        <div class="row">
+          <div class="row-name">Договор<span>сделка</span></div>
+          <div class="track"></div>
+          <div class="row-val"><span class="here">нет данных</span></div>
+        </div>
+      </div>
+
+      <div class="ticks">
+        <div></div>
+        <div class="ticks-inner mono"><span>1</span><span>10</span><span>100</span><span>1 000</span><span>10 000</span><span>100 000</span><span>1 млн</span></div>
+        <div></div>
+      </div>
+    </div>
+
+    <h3>Когда созревает каждый слой</h3>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Слой</th><th>О чём говорит</th><th>Срок созревания</th><th>Состояние</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Показы</td><td>Правильно ли выбраны слова и регион</td><td>1-2 недели</td><td><span class="pill stop">слова чужие</span></td></tr>
+          <tr><td>Клики</td><td>Цепляет ли объявление нужных людей</td><td>2-4 недели</td><td><span class="pill stop">приводит не тех</span></td></tr>
+          <tr><td>Поведение на странице</td><td>Совпало ли обещание объявления с содержимым</td><td>2-4 недели</td><td><span class="pill stop">61 % уходят сразу</span></td></tr>
+          <tr><td>Заявка</td><td>Достаточно ли доверия, чтобы оставить контакты</td><td>2-3 месяца</td><td><span class="pill wait">данных мало</span></td></tr>
+          <tr><td>Разговор и расчёт</td><td>Качество заявок: наш это заказчик или нет</td><td>3-6 месяцев</td><td><span class="pill wait">не измеряется</span></td></tr>
+          <tr><td>Договор</td><td>Окупаемость канала в деньгах</td><td>6-12 месяцев</td><td><span class="pill wait">не измеряется</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Сроки созревания - ориентиры для оборудования с длинным циклом сделки. Их надо заменить на вашу практику: сколько в среднем проходит от первого обращения по КЦОД до договора.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">05</span>Хватает ли бюджета и когда будет ответ</h2>
+    <p class="sub">Вопрос «зря ли мы тратим» распадается на три: хватило ли денег, сколько их нужно на самом деле и когда станет понятно.</p>
+
+    <h3>Денег было достаточно, потрачены они не туда</h3>
+    <p>По словам, которыми называют наш товар, ушло 9 888 ₽ - седьмая часть бюджета. Остальное купило показы в рекламной сети и по общим запросам про дата-центры.</p>
+
+    <h3>Сколько денег вообще влезает в этот канал</h3>
+    <p>За 30 дней кампания собрала 270 показов по нашим словам и 25 кликов по 294 ₽. Весь спрос по теме в России - около 1 300 запросов в месяц по замеру Wordstat от 07.09, и ЦФО это меньшая его часть. Даже если собрать все точные слова без остатка, в ЦФО получается 40-60 кликов в месяц, то есть <strong>10-15 тыс ₽</strong>. Больше в этот канал не влить: дальше опять начинаются чужие запросы.</p>
+
+    <h3>Когда будет ответ</h3>
+    <p>Доля обращений у нормального трафика на нашей странице - от 2 до 4 % (по бесплатному поиску, прямым заходам и платному поиску за этот месяц). 40-60 кликов дают 1-2 обращения в месяц. Чтобы отличить закономерность от везения, нужно около десяти обращений: по одной-двум заявкам судить нельзя, они случайны. В ЦФО это 5-10 месяцев.</p>
+
+    <h3>Как сократить срок</h3>
+    <p>Открыть географию на всю Россию. Спрос там примерно втрое больше, значит 100-160 кликов и 3-5 обращений в месяц. Ответ приходит за 2-3 месяца, бюджет - 35-45 тыс ₽ в месяц, и это меньше, чем мы тратили.</p>
+
+    <div class="tablewrap" style="margin-top:18px">
+      <table>
+        <thead>
+          <tr><th>Вариант</th><th class="n">Бюджет в месяц</th><th class="n">Обращений в месяц</th><th>Когда будет ответ</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Оставить как было: рекламная сеть плюс широкие слова</td><td class="n">73 000 ₽</td><td class="n">0-1</td><td>ответа не будет</td></tr>
+          <tr><td>Только поиск, ЦФО, точные слова</td><td class="n">10-15 тыс ₽</td><td class="n">1-2</td><td>5-10 месяцев</td></tr>
+          <tr class="pick"><td>Только поиск, вся Россия, точные слова</td><td class="n">35-45 тыс ₽</td><td class="n">3-5</td><td>2-3 месяца</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Замерено: цена клика 294 ₽, 270 показов по точным словам за месяц, доля обращений 2-4 % на нашей странице. Принято на веру и требует проверки: спрос по России втрое больше, чем в ЦФО, и полный сбор слов даёт вдвое больше показов, чем нынешние 59 фраз.</p>
+
+    <h3>Окупается ли это</h3>
+    <p>Ожидаемая цена обращения - около 10 тыс ₽: клик 294 ₽ при доле обращений 3 %. При чеке от 10 млн ₽ реклама окупается, если договором становится хотя бы одно обращение из сорока. Проверить это можете только вы, у нас нет данных о том, что происходит с заявками после сайта.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">06</span>Что не так в настройке</h2>
+    <p class="sub">Часть работы сделана верно: счётчик подключён к кампаниям, 804 площадки рекламной сети вычищены руками, на поиске собрано 585 минус-слов, ведём на правильную страницу. Ниже то, что осталось неисправленным.</p>
+
+    <ul class="clean">
+      <li><span class="mark">01</span><span><strong>Рекламная сеть забрала 55 % бюджета и не дала ни одной заявки.</strong> 18 886 визитов, 29 секунд на странице, 62 % уходят сразу. За 29 секунд страницу про ЦОД не прочитать. Против этого не помогают ни ставки, ни объявления: там нет людей, которые сейчас выбирают ЦОД.</span></li>
+      <li><span class="mark">02</span><span><strong>На поиске 92 % показов - чужие темы.</strong> Кампания показывалась по «дата центр», «data center usa», «cern data centre», «call center». Это ЦОД на тысячи стоек, зарубежные площадки и справочные запросы, а не наши 2-15 стоек.</span></li>
+      <li><span class="mark">03</span><span><strong>Самое ходовое слово рынка почти не использовано.</strong> «Модульный ЦОД» ищут 487 раз в месяц, «контейнерный» - 218. В кампании 6 фраз с «модульн» против 9 с «контейнерн». «Микро ЦОД» не использован вовсе, хотя это отдельное наше направление.</span></li>
+      <li><span class="mark">04</span><span><strong>Объявление одно на группу и без второго заголовка.</strong> Оно занимает меньше места в выдаче, и сравнивать нечего: понять, какой текст приводит заказчика, сейчас невозможно.</span></li>
+      <li><span class="mark">05</span><span><strong>Автоматика управления ставками включена раньше времени.</strong> Она обучается на заявках, а заявка за месяц одна. Учиться не на чем, поэтому деньги уходят в перебор вариантов.</span></li>
+      <li><span class="mark">06</span><span><strong>О ходе работ не сообщалось.</strong> Причина организационная: замеры не собирались и не показывались. С этого выпуска исправлено, следующий через две недели.</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">07</span>Что делаем дальше</h2>
+    <p class="sub">Порядок важен: сначала перестаём платить за лишнее, потом набираем объём по нужным словам.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Шаг</th><th>Зачем</th><th>Когда виден результат</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Выключить рекламную сеть</td><td>Перестать платить 40 тыс ₽ в месяц за трафик без заявок</td><td>сразу</td></tr>
+          <tr><td>Вернуть ручное управление ставками, пока заявок мало</td><td>Перестать платить за обучение автоматики</td><td>сразу</td></tr>
+          <tr><td>Пересобрать слова: модульный, мобильный, микро ЦОД, ЦОД под ключ; убрать общие «дата центр» и «цод»</td><td>Платить только за тех, кто ищет наш товар</td><td>2-3 недели после перезапуска</td></tr>
+          <tr><td>Открыть географию на всю Россию</td><td>Набрать объём, без которого ответа не будет</td><td>1 месяц</td></tr>
+          <tr><td>Сделать 3-4 варианта объявлений со вторым заголовком</td><td>Понять, какой текст приводит заказчика</td><td>3-4 недели</td></tr>
+          <tr><td>Завести учёт звонков и писем</td><td>Видеть обращения, которые идут мимо формы</td><td>2 недели</td></tr>
+          <tr><td>Не платить за запросы, где мы и так в верхних строках бесплатной выдачи</td><td>Не покупать клик, который приходит сам</td><td>сразу</td></tr>
+          <tr><td>Поднять страницу в бесплатной выдаче с 8-го места в первую пятёрку</td><td>930 показов за две недели уже есть, платить за эти клики не нужно</td><td>2-4 месяца</td></tr>
+          <tr><td>Отчёт раз в две недели по этой же форме</td><td>Видеть движение, а не спорить о впечатлениях</td><td>со следующего выпуска</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="caveat">
+    <h2>Чего эти числа не говорят</h2>
+    <ul>
+      <li>Что стало с заявками дальше. Метрика видит отправку формы, но не видит разговор, расчёт и договор. Пока это не сведено, об окупаемости канала говорить рано.</li>
+      <li>Обращения мимо сайта: звонок по номеру из выдачи, письмо, звонок знакомому менеджеру. В замер они не попадают.</li>
+      <li>Реклама остановлена, поэтому следующий замер покажет движение только по бесплатному поиску, пока не будет решения о перезапуске.</li>
+      <li>В общей статистике сайта за месяц есть 9 заполненных форм с тестовой копии страницы КЦОД - это наши собственные проверки. Из таблиц этого отчёта они убраны.</li>
+    </ul>
+  </div>
+
+  <div class="ask">
+    <h2>Что нужно от вас</h2>
+    <p>Три ответа, без которых мы оцениваем канал по общим представлениям, а не по вашей практике.</p>
+    <ol>
+      <li>Сколько времени проходит от первого обращения по КЦОД до договора?</li>
+      <li>Сколько обращений доходит до договора: одно из десяти, из двадцати, из сорока?</li>
+      <li>Считаем ли мы каналом только заявки с сайта, или звонки и письма тоже?</li>
+    </ol>
+  </div>
+
+  <footer>
+    <p>Источники: Яндекс Директ, отчёты о кампаниях и о поисковых запросах за 30 дней; Яндекс Метрика, счётчик 111347702; Яндекс Вебмастер, позиции страницы в поиске; Wordstat, замер спроса 07.09.2026. Расход указан с НДС, без учёта скидок.</p>
+    <p>Все числа получены запросами к сервисам напрямую и повторяемы. Следующий выпуск через две недели.</p>
+  </footer>
+
+</div>
+</body>
+</html>
