@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>План продвижения КЦОД: 30, 60 и 90 дней · АйТек</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #eef1f4;
+    --surface: #ffffff;
+    --surface-2: #f7f9fb;
+    --ink: #0f1e29;
+    --ink-2: #3d5260;
+    --muted: #6b8090;
+    --line: #d3dce3;
+    --line-strong: #adbcc8;
+    --accent: #176bb2;
+    --accent-deep: #0e4472;
+    --accent-soft: #e2edf7;
+    --good: #2c7a52;
+    --warn: #9a6608;
+    --warn-soft: #fbf1dc;
+    --bad: #a83a2c;
+    --shadow: 0 1px 2px rgba(15, 30, 41, .06), 0 8px 24px -16px rgba(15, 30, 41, .3);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground: #0c1419; --surface: #131e26; --surface-2: #18242d;
+      --ink: #e4ecf1; --ink-2: #b3c4cf; --muted: #7e93a1;
+      --line: #263540; --line-strong: #3a4e5c;
+      --accent: #56a5dd; --accent-deep: #8cc4ec; --accent-soft: #14293b;
+      --good: #57b184; --warn: #d0a147; --warn-soft: #2a2416; --bad: #dd7a6a;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px -18px rgba(0, 0, 0, .9);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground: #0c1419; --surface: #131e26; --surface-2: #18242d;
+    --ink: #e4ecf1; --ink-2: #b3c4cf; --muted: #7e93a1;
+    --line: #263540; --line-strong: #3a4e5c;
+    --accent: #56a5dd; --accent-deep: #8cc4ec; --accent-soft: #14293b;
+    --good: #57b184; --warn: #d0a147; --warn-soft: #2a2416; --bad: #dd7a6a;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px -18px rgba(0, 0, 0, .9);
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; }
+  a { color: var(--accent-deep); }
+  .wrap {
+    max-width: 940px;
+    margin: 0 auto;
+    padding: 0 20px;
+    padding-block: 44px 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; overflow-wrap: anywhere; }
+  strong { color: var(--ink); font-weight: 600; }
+  /* без этого широкая таблица распирает страницу на узком экране */
+  .wrap > *, section > *, .steps > *, .compare > *, .examples > * { min-width: 0; }
+
+  /* шапка */
+  .head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 12px; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11.5px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--muted);
+    display: flex; flex-wrap: wrap; gap: 8px 18px;
+  }
+  h1 {
+    font-size: clamp(32px, 5.4vw, 48px);
+    line-height: 1.08; font-weight: 700; letter-spacing: -.025em;
+    margin: 0; text-wrap: balance;
+  }
+  .lede { font-size: 19px; color: var(--ink-2); max-width: 64ch; margin: 0; }
+  .meta {
+    display: flex; flex-wrap: wrap; gap: 4px 28px;
+    border-top: 1px solid var(--line); padding-top: 14px;
+    font-size: 13.5px; color: var(--muted);
+  }
+  .meta b { color: var(--ink-2); font-weight: 600; }
+
+  /* главное */
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--line-strong);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+    padding: 26px 28px;
+    display: flex; flex-direction: column; gap: 14px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+  }
+  .verdict h2 { margin: 0; font-size: 22px; font-weight: 700; letter-spacing: -.015em; }
+  .verdict p { margin: 0; color: var(--ink-2); max-width: 68ch; font-size: 17.5px; }
+
+  /* разделы */
+  section { display: flex; flex-direction: column; padding-top: 30px; margin-top: 18px; border-top: 2px solid var(--line-strong); }
+  section > h2 {
+    font-size: clamp(24px, 3.4vw, 31px);
+    line-height: 1.18; font-weight: 700; letter-spacing: -.022em;
+    margin: 0 0 6px; color: var(--ink); text-wrap: balance;
+    display: flex; gap: 14px; align-items: baseline;
+  }
+  section > h2 .n {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 15px; font-weight: 600; color: var(--accent);
+    letter-spacing: 0; flex: none; padding-top: 2px;
+  }
+  .sub { font-size: 16px; color: var(--muted); margin: 0 0 20px; max-width: 66ch; }
+  section > p { margin: 0 0 16px; max-width: 68ch; color: var(--ink-2); }
+  section > p:last-child { margin-bottom: 0; }
+  h3 { font-size: 19px; font-weight: 600; letter-spacing: -.01em; margin: 26px 0 8px; color: var(--ink); }
+
+  /* полоса этапа */
+  .phase {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px;
+    margin: 6px 0 4px; padding: 14px 20px;
+    background: var(--accent-deep); color: var(--surface); border-radius: 4px;
+  }
+  .phase b { font-size: 21px; font-weight: 700; letter-spacing: -.01em; }
+  .phase span { font-size: 14.5px; opacity: .88; }
+
+  /* таблицы */
+  .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); box-shadow: var(--shadow); }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 580px; }
+  th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  thead th {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .09em; text-transform: uppercase;
+    color: var(--muted); font-weight: 500; background: var(--surface-2);
+    border-bottom: 1px solid var(--line-strong); line-height: 1.4;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  tbody tr.pick { background: var(--accent-soft); }
+  td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.n { font-weight: 600; }
+  td.zero { color: var(--bad); font-weight: 700; }
+  table.wide1 { min-width: 700px; }
+  table.wide1 td:first-child, table.wide1 th:first-child { width: 30%; }
+  .note { font-size: 14px; color: var(--muted); max-width: 68ch; margin: 14px 0 0; }
+
+  /* карточки-числа */
+  .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+  .box { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow); }
+  .box-label { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
+  .box-num { font-size: 34px; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1.05; }
+  .box-sub { font-size: 14px; color: var(--ink-2); }
+  .box.bad .box-num { color: var(--bad); }
+  .box.good .box-num { color: var(--good); }
+
+  /* шаг плана */
+  .steps { display: flex; flex-direction: column; gap: 14px; }
+  .step { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 20px 22px; box-shadow: var(--shadow); }
+  .step.done-step { border-left: 4px solid var(--good); }
+  .step.wait-step { border-left: 4px solid var(--warn); }
+  .step-head { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; margin-bottom: 8px; }
+  .step-num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; font-weight: 600; color: var(--accent); flex: none; }
+  .step h3 { margin: 0; font-size: 19px; font-weight: 600; }
+  .step p { margin: 0 0 10px; color: var(--ink-2); font-size: 16.5px; max-width: 70ch; }
+  .step p:last-child { margin-bottom: 0; }
+  .facts { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  .facts b { color: var(--ink-2); font-weight: 600; }
+  .check {
+    display: block; margin-top: 10px; padding: 9px 14px;
+    background: color-mix(in srgb, var(--good) 10%, var(--surface));
+    border-left: 3px solid var(--good); border-radius: 0 3px 3px 0;
+    font-size: 15.5px; color: var(--ink);
+  }
+  .check b { color: var(--good); font-weight: 600; }
+
+  .pill { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: .03em; padding: 3px 9px; border-radius: 2px; white-space: nowrap; }
+  .pill.ok { background: color-mix(in srgb, var(--good) 14%, transparent); color: var(--good); }
+  .pill.wait { background: var(--warn-soft); color: var(--warn); }
+  .pill.stop { background: color-mix(in srgb, var(--bad) 13%, transparent); color: var(--bad); }
+  .pill.go { background: var(--accent-soft); color: var(--accent-deep); }
+
+  /* выносной вывод */
+  .key {
+    margin: 22px 0 6px; padding: 20px 24px;
+    background: var(--surface); border: 1px solid var(--accent);
+    border-left: 5px solid var(--accent); border-radius: 4px;
+    font-size: 19px; line-height: 1.5; color: var(--ink);
+    box-shadow: var(--shadow);
+  }
+  .key b, .key strong { font-weight: 700; }
+  .key .kl {
+    display: block; font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 8px; font-weight: 600;
+  }
+
+  /* порядок работ */
+  .order {
+    margin: 4px 0 20px; padding: 20px 24px;
+    background: var(--warn-soft);
+    border: 1px solid color-mix(in srgb, var(--warn) 45%, transparent);
+    border-left: 5px solid var(--warn); border-radius: 4px;
+    color: var(--ink);
+  }
+  .order h3 { margin: 0 0 8px; font-size: 19px; color: var(--warn); }
+  .order p { margin: 0 0 10px; color: var(--ink-2); font-size: 16.5px; max-width: 68ch; }
+  .order p:last-child { margin-bottom: 0; }
+
+  .caveat { background: var(--surface-2); border: 1px dashed var(--line-strong); border-radius: 4px; padding: 22px 24px; margin-top: 30px; }
+  .caveat h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
+  .caveat ul { margin: 0; padding-left: 20px; font-size: 15.5px; color: var(--ink-2); display: flex; flex-direction: column; gap: 10px; }
+
+  .ask { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 4px; padding: 24px 26px; margin-top: 18px; }
+  .ask h2 { margin: 0 0 6px; font-size: 22px; font-weight: 700; }
+  .ask p { margin: 0 0 16px; color: var(--ink-2); font-size: 16px; max-width: 68ch; }
+  .ask ol, .ask ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 12px; font-size: 16.5px; }
+
+  footer { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 34px; font-size: 13.5px; color: var(--muted); }
+  footer p { margin: 0 0 8px; max-width: 78ch; }
+
+  @media (max-width: 640px) {
+    body { font-size: 16px; }
+    section > h2 { flex-direction: column; gap: 2px; }
+    .verdict, .ask, .caveat, .order, .step { padding: 20px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="head">
+    <div class="eyebrow">
+      <span>Контейнерные ЦОД · АйТек</span>
+      <span>План 30 / 60 / 90</span>
+      <span>18 сентября 2026</span>
+    </div>
+    <h1>План продвижения КЦОД: 30, 60 и 90 дней</h1>
+    <p class="lede">Тринадцать шагов по всем слоям продвижения, а не только по рекламе. У каждого шага: кто делает, зачем, чем проверяем и к какому сроку. Реклама здесь - два шага из тринадцати.</p>
+    <div class="meta">
+      <span><b>Статус:</b> утверждён 18.09.2026, приоритеты не переставляются</span>
+      <span><b>Точка отсчёта снята:</b> 18.09, до любых правок</span>
+      <span><b>Ближайший выпуск отчёта:</b> 02.10.2026</span>
+    </div>
+  </header>
+
+  <div class="verdict">
+    <h2>Главный ответ на вопрос заказчика</h2>
+    <p>Заказчик спрашивал, вкладываться ли дальше в Директ. Ответ по числам: <strong>Директ оставить, но перестать считать его главным каналом.</strong> Причина не в качестве настройки, а в размере спроса: прямого спроса на наш товар около 4 000 запросов в месяц, и реклама физически не может дать больше, чем есть спроса.</p>
+    <p>Поэтому деньги и время распределяются так: <strong>Директ - точная настройка на 35-45 тыс ₽ в месяц, а рост ищем в бесплатном поиске, в задачном слое запросов и в попадании в ответы ИИ.</strong> За прошлый месяц 73 185 ₽ рекламы дали одну заявку; бесплатные источники со страницы дали семь при нулевых затратах.</p>
+  </div>
+
+  <section>
+    <h2><span class="n">01</span>Откуда взялся план: спрос по слоям</h2>
+    <p class="sub">Замер Wordstat 18.09.2026, двойной счёт снят по ядрам. Это карта того, что люди вообще спрашивают по теме, и где нас в этом нет.</p>
+
+    <div class="tablewrap">
+      <table class="wide1">
+        <thead>
+          <tr><th>Слой спроса</th><th class="n">Запросов в месяц</th><th>Что у нас есть сейчас</th><th>Чей шаг</th></tr>
+        </thead>
+        <tbody>
+          <tr class="pick"><td><strong>Категория товара</strong>: модульный, контейнерный, мобильный, микро ЦОД</td><td class="n">1 668</td><td>страница есть, но в её подзаголовках нет слова «модульный»</td><td>Ш-3</td></tr>
+          <tr class="pick"><td><strong>Цена</strong>: «стоимость цод», «цод цена», «сколько стоит»</td><td class="n">1 029</td><td>страница на 8-м месте, ноль кликов</td><td>Ш-2</td></tr>
+          <tr class="pick"><td><strong>Покупка прямо</strong>: «купить цод», «цод под ключ»</td><td class="n">903</td><td>страница есть</td><td>Ш-2</td></tr>
+          <tr><td><strong>Задача без названия товара</strong>: «серверная в офисе», «перенос серверной»</td><td class="n">701</td><td>раздела нет, есть чужая страница с нулём кликов</td><td>Ш-8</td></tr>
+          <tr class="pick"><td><strong>Стандарт и требования</strong>: Tier III, 152-ФЗ</td><td class="n">292</td><td>упомянуты в перечислении, в ИИ-ответы не попадаем</td><td>Ш-10, Ш-12</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="key">
+      <span class="kl">Что отсюда следует</span>
+      Наш прямой спрос - около <b>4 000 запросов в месяц</b>, и реклама не может дать больше, чем есть спроса. При этом на странице, которая собирает этот спрос бесплатно, мы стоим на восьмом месте. Это и есть причина, по которой рост ищем не в рекламе.
+    </div>
+    <p class="note">Прежняя оценка спроса была 1 300 запросов, из неё выведены бюджет и сроки в выпуске 1 отчёта заказчику. Уточнение идёт в выпуск 2 от 02.10: выпуск 1 не переписываем, он снимок на свою дату.</p>
+
+    <h3>Точка отсчёта, с которой будем сравнивать</h3>
+    <div class="compare">
+      <div class="box">
+        <span class="box-label">Страница КЦОД, бесплатный поиск</span>
+        <span class="box-num">8,2</span>
+        <span class="box-sub">средняя позиция. 930 показов, 49 кликов, CTR 5,27 % за две недели</span>
+      </div>
+      <div class="box">
+        <span class="box-label">Сайт целиком</span>
+        <span class="box-num">6,24</span>
+        <span class="box-sub">средняя позиция. 5 043 показа, 347 кликов, CTR 6,88 %</span>
+      </div>
+      <div class="box bad">
+        <span class="box-label">Заявки со страницы за месяц</span>
+        <span class="box-num">8</span>
+        <span class="box-sub">одна с рекламы за 73 185 ₽, семь с прямых заходов, ноль с бесплатного поиска</span>
+      </div>
+    </div>
+    <p class="note">Снимки лежат в проекте и повторяются скриптами. До 18.09 снимков не было ни одного, то есть план на месяцы нельзя было проверить.</p>
+  </section>
+
+  <section>
+    <h2><span class="n">02</span>Кто что делает</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Кто</th><th>За что отвечает</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Мы</strong></td><td>замеры, цели в счётчике, тексты и задания, выпуски отчёта</td></tr>
+          <tr><td><strong>Исполнитель</strong></td><td>все правки в кабинете Яндекс.Директа, по нашим заданиям</td></tr>
+          <tr><td><strong>Владелец</strong></td><td>доступы, решения по бюджету и приоритетам, выкладка страницы на бой</td></tr>
+          <tr><td><strong>Заказчик</strong></td><td>ответы о сделках, о географии поставки, согласие автора на странице</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="order">
+      <h3>Порядок важнее списка</h3>
+      <p><strong>Сначала чиним измерение, потом трогаем кабинет Директа.</strong> Менять настройки и одновременно мерять результат нельзя: автоматические стратегии переобучаются, и через месяц будет невозможно сказать, что дала правка, а что переобучение.</p>
+      <p>Правки страницы (шаги Ш-2, Ш-3, Ш-4) идут <strong>одной выкладкой</strong> через набор лендингов, а не по одной: иначе к следующему замеру мы не поймём, что сработало.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">03</span>Тридцать дней: починить измерение и снять дешёвые ограничения</h2>
+    <p class="sub">Правки текста и мета-тегов, ни одной новой страницы. До 18.10.2026.</p>
+
+    <div class="phase"><b>30 дней</b><span>шесть шагов · два из них про рекламу · ни одной новой страницы</span></div>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-1</span><h3>Починить цели в счётчике Метрики</h3><span class="pill go">делаем мы · до 25.09</span></div>
+        <p>Завести отдельную цель на отправку формы именно со страницы КЦОД; выбрать одну цель из трёх дублей главной; вывести из отчётности шесть навигационных целей; поставить фильтр на адреса предпросмотра.</p>
+        <p><strong>Зачем.</strong> Сейчас «заявка по КЦОД» каждый раз считается вручную фильтром по странице входа. Это медленно и невоспроизводимо, и любой следующий вывод об эффективности будет таким же спорным, как нынешний.</p>
+        <span class="check"><b>Чем проверяем:</b> через неделю после правки цель по странице КЦОД показывает то же число, что ручной фильтр за тот же период.</span>
+        <div class="facts"><span><b>Блокирует:</b> все правки в кабинете Директа</span><span><b>Стоит:</b> ничего, наша работа</span></div>
+      </div>
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-2</span><h3>Заголовок и описание страницы под ценовой запрос</h3><span class="pill go">текст к 25.09</span></div>
+        <p>Довести ответ про цену до заголовка в результатах поиска. Цена «от 10 млн ₽» на странице есть, конкуренты цен не показывают - это наше преимущество, и в ответах ИИ оно уже работает: на вопрос о стоимости мы первый источник.</p>
+        <p><strong>Зачем.</strong> По запросам «цод стоимость», «дата центр стоимость», «сколько стоит дата центр» мы стоим на 7-9 месте и получаем ноль кликов. Люди видят нас и не заходят. Слой измерен: 1 029 запросов в месяц.</p>
+        <span class="check"><b>Чем проверяем:</b> CTR по ценовым запросам через три недели после выкладки. Ориентир - выйти с нуля хотя бы на 4-5 %, уровень соседних запросов.</span>
+        <div class="facts"><span><b>Кто:</b> текст наш, утверждение владельца, выкладка через набор лендингов</span></div>
+      </div>
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-3</span><h3>Слово «модульный» в структуру страницы</h3><span class="pill go">вместе с Ш-2</span></div>
+        <p>Минимум - в H1 и два-три подзаголовка. Сейчас в двадцати подзаголовках страницы слова «модульный» нет ни разу, всё названо «контейнерный ЦОД» или «КЦОД».</p>
+        <p><strong>Зачем.</strong> «Модульный ЦОД» спрашивают 513 раз в месяц против 202 у «контейнерного». Самое частое слово темы есть у нас только в тексте, а в структуре его нет. Товар переименовывать не нужно, нужно, чтобы человек увидел своё слово.</p>
+        <span class="check"><b>Чем проверяем:</b> показы по запросам со словом «модульный» в выгрузке Вебмастера через 3-4 недели.</span>
+      </div>
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-4</span><h3>Обратные ссылки со страниц проектов</h3><span class="pill go">вместе с Ш-2 и Ш-3</span></div>
+        <p>Поставить ссылку на страницу КЦОД с каждой из пяти страниц проектов про ЦОД и добавить страницу в раздел «Услуги».</p>
+        <p><strong>Зачем.</strong> Страница ссылается на шесть своих проектов, а <strong>ни один не ссылается назад</strong>. Входящих ссылок внутри сайта всего две, обе из родительской цепочки; с главной и с раздела «Услуги» ссылок нет. Правка текста, денег не стоит.</p>
+        <span class="check"><b>Чем проверяем:</b> повторная проверка публикации показывает входящие ссылки; позиция страницы в снимке через месяц.</span>
+      </div>
+
+      <div class="step done-step">
+        <div class="step-head"><span class="step-num">Ш-5 и Ш-6</span><h3>Кабинет Директа: задание исполнителю</h3><span class="pill ok">задание собрано</span></div>
+        <p>География на всю Россию, бюджет 35-45 тыс ₽ в месяц, замена широких фраз точными, починка разметки рекламных ссылок, стратегия по кликам вместо конверсий, второй заголовок и визитка, корректировки ставок, рекламная сеть только догоняющим показом, и снятие рекламы с запросов, где мы в топ-5 бесплатной выдачи.</p>
+        <p><strong>Зачем.</strong> Из 32 249 ₽ поискового расхода на слова нашего товара ушло 9 770 ₽, то есть 30 %. Рекламная сеть съела 40 414 ₽ и не дала ни одной заявки.</p>
+        <p>Подробности и все девять шагов - <a href="../zadanie/">на отдельной странице задания</a>.</p>
+        <span class="check"><b>Чем проверяем:</b> через две недели после правок доля расхода на словах товара не ниже 70 %, рекламные визиты разложены по кампаниям, расход в границах 35-45 тыс ₽.</span>
+        <div class="facts"><span><b>Кто:</b> исполнитель, по нашему заданию</span><span><b>Задание к:</b> 02.10</span><span><b>Правки до:</b> 09.10</span><span><b>⛔ Только после Ш-1</b></span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">04</span>Шестьдесят дней: занять верх воронки и доверие</h2>
+    <p class="sub">Здесь появляется новая страница, то есть этап дороже по времени. До 17.11.2026.</p>
+
+    <div class="phase"><b>60 дней</b><span>три шага · одна новая точка входа · работа с доверием</span></div>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-8</span><h3>Задачный слой запросов</h3><span class="pill go">к 17.11</span></div>
+        <p>Раздел под людей, которые ещё не знают слова «ЦОД»: «серверная в офисе» (184 запроса), «где разместить серверы компании» (121), «перенос серверной» (109), «модернизация серверной» (94), «резервный ЦОД» (89).</p>
+        <p><strong>Зачем.</strong> 701 запрос в месяц, верх воронки и самый дешёвый трафик. Отдельная выгода: у сайта уже есть страница «модернизация серверной под ключ» с 52 показами и нулём кликов - её можно не делать с нуля, а починить.</p>
+        <span class="check"><b>Чем проверяем:</b> показы и клики по этим запросам; заявки по цели, привязанной к странице.</span>
+      </div>
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-9</span><h3>Автор и экспертность на странице</h3><span class="pill go">к 30.10</span></div>
+        <p>Имя, должность и опыт на странице. Автор определён: <strong>руководитель подразделения инженерных систем</strong>, тот же человек, который читает отчёт.</p>
+        <p><strong>Зачем.</strong> Единственное настоящее замечание проверки качества - не видно, кто автор и почему ему верить. Нужно и для заказчика с чеком от 10 млн ₽, и для попадания в ответы ИИ: обзорные ответы собираются с площадок, где у текста есть автор.</p>
+        <span class="check"><b>Чем проверяем:</b> проверка качества перестаёт выдавать это замечание; при повторном замере ИИ смотрим, появились ли мы в обзорных вопросах.</span>
+        <div class="facts"><span><b>Зависит от:</b> согласия названного человека</span></div>
+      </div>
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-10</span><h3>Явный ответ про Tier III и про сроки</h3><span class="pill go">вместе с Ш-9</span></div>
+        <p>Формулировка вида «делаем ЦОД по Tier III / TIA-942 за 3-5 месяцев», а не упоминание стандарта в перечислении.</p>
+        <p><strong>Зачем.</strong> И стандарт, и срок на странице есть, но в ИИ-ответы на вопросы «кто делает по Tier III» и «за какой срок можно построить» мы не попадаем. Группа запросов про стандарт и требования - 292 в месяц.</p>
+        <span class="check"><b>Чем проверяем:</b> повторный замер ИИ-ответов по этим двум вопросам.</span>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">05</span>Девяносто дней: выйти за пределы своего сайта</h2>
+    <p class="sub">И пересчитать потолок канала на новых числах. До 17.12.2026.</p>
+
+    <div class="phase"><b>90 дней</b><span>три шага · единственный слой, который мы не трогали вовсе</span></div>
+
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-11</span><h3>Внешние упоминания</h3><span class="pill go">первая публикация к 30.11</span></div>
+        <p>Публикации на площадках, с которых Яндекс собирает обзорные ответы. Список получен замером, не выдуман: habr.com (цитируется в трёх ответах из десяти), tech-expo.ru и powerunit.ru (по два). Своими силами доступны именно они, остальные в списке - конкуренты и интеграторы.</p>
+        <p><strong>Зачем.</strong> Единственный слой, который мы не трогали вовсе, и именно он решает, попадём ли мы в обзорные ИИ-ответы «кто в России производит» и «сравни производителей». Своей страницей в такой ответ не попасть. Ориентир по объёму работы - GreenMDC: 63 страницы пресс-центра и 149 новостей.</p>
+        <span class="check"><b>Чем проверяем:</b> повторный замер ИИ-ответов по обзорным вопросам; упоминания домена в выдаче.</span>
+        <div class="facts"><span><b>Дальше:</b> по одной публикации в месяц</span></div>
+      </div>
+
+      <div class="step">
+        <div class="step-head"><span class="step-num">Ш-12</span><h3>Группа запросов вокруг стандарта</h3><span class="pill go">к 17.12</span></div>
+        <p>Материал под Tier III и 152-ФЗ - 292 запроса в месяц у людей, которые разбираются в требованиях до выбора поставщика.</p>
+        <span class="check"><b>Чем проверяем:</b> показы по группе «стандарт и требования».</span>
+      </div>
+
+      <div class="step wait-step">
+        <div class="step-head"><span class="step-num">Ш-13</span><h3>Пересчёт потолка канала</h3><span class="pill wait">17.12, не раньше</span></div>
+        <p>Пересчитать, сколько канал может дать, на числах после двух месяцев работы.</p>
+        <p><strong>Зачем.</strong> Утверждённые 35-45 тыс ₽ в месяц считались от прежней оценки спроса в 1 300 запросов. Теперь известно, что прямой спрос около 4 000, то есть втрое больше. <strong>Потолок канала выше утверждённого бюджета.</strong></p>
+        <p>⛔ Не раньше двух месяцев работы: менять бюджет и одновременно мерять результат нельзя.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <h2><span class="n">06</span>Ритм проверки</h2>
+    <p class="sub">Отчётность раз в две недели. Выпуски: 02.10, 16.10, 30.10, 13.11, 27.11, 11.12.</p>
+    <p>К каждому выпуску: снимаем выгрузку Вебмастера и сравниваем с предыдущим замером, считаем заявки по цели, привязанной к странице, берём расход Директа за период и обновляем страницу отчёта заказчику. Раз в месяц дополнительно: проверка качества страницы, замер ответов ИИ, видимость в Алисе.</p>
+
+    <h3>Что обязано попасть в выпуск от 02.10</h3>
+    <div class="tablewrap">
+      <table class="wide1">
+        <thead><tr><th>Что</th><th>Почему обязательно</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td><strong>Спрос уточнён: ~6 700 запросов, прямой ~4 000</strong> вместо 1 300</td><td>это несущее число раздела 5 выпуска 1: из него выведены бюджет, число обращений и срок ответа</td></tr>
+          <tr><td>Ценовой слой 1 029 запросов в месяц</td><td>подкрепляет шаг «поднять страницу с 8-го места»: люди ищут цену, видят нас и не кликают</td></tr>
+          <tr><td>Потолок канала выше утверждённого бюджета</td><td>сказать прямо, что 35-45 тыс ₽ считались от прежних чисел, а пересчёт - 17.12</td></tr>
+          <tr><td>Точка отсчёта снята 18.09</td><td>со выпуска 2 появляется сравнение с предыдущим замером, а не «по впечатлениям»</td></tr>
+          <tr><td>Заявки разложены по источникам правильно</td><td>семь контактов - это прямые заходы, у бесплатного поиска ноль при 125 визитах</td></tr>
+          <tr><td>Ссылки внутри сайта идут в одну сторону</td><td>шесть страниц проектов не ссылаются на страницу КЦОД; правка текста, денег не стоит</td></tr>
+          <tr><td>Что сделано по целям счётчика и по кабинету Директа</td><td>заявка считается автоматически; задание исполнителю отдано</td></tr>
+          <tr><td>Вопрос про географию поставки</td><td>куда заказчик готов везти и монтировать: расширение на Россию принято, риск не закрыт</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Изменения меньше 5 % считаем шумом, а не результатом. Один замер ИИ-ответов - это один снимок, тренд по нему не строится.</p>
+  </section>
+
+  <div class="caveat">
+    <h2>Чего не делаем и почему</h2>
+    <ul>
+      <li><strong>Отраслевые страницы.</strong> Спроса нет: «ЦОД для банка» 20 запросов, «для промышленности» 9, «для госзаказчика» 0. Конкурент DATARK строит сайт по отраслям, это выглядит образцом, но спроса под ним нет.</li>
+      <li><strong>Страницы под «мобильную серверную».</strong> 300 запросов в месяц, но спрос замусорен разработкой мобильных приложений. Без отдельной проверки не берём.</li>
+      <li><strong>Страницу «против конкурента».</strong> В поставке за 10 млн ₽ она читается как выпад в сторону тех, с кем можно оказаться в одном конкурсе.</li>
+      <li><strong>Слой аренды и размещения.</strong> Не наша тема, решение владельца 18.09. Из карты спроса убран, заменявшее конкурентную страницу сравнение «свой ЦОД против аренды стойки» отменено вместе с ним. В рекламе арендные запросы уходят в минус-слова.</li>
+      <li><strong>Калькулятор стоимости и связку релизов со страницей.</strong> Первое - работа программиста, а не правка текста; второе требует постоянной дисциплины, держать её пока не на чем.</li>
+      <li><strong>Технический аудит всего сайта.</strong> Это отдельный проект, туда же canonical без www и карта сайта, не обновлявшаяся с 2022 года.</li>
+      <li><strong>Машинную раскладку фраз и машинные гипотезы запросов.</strong> Прогнали 18.09, в нашей нише не работают.</li>
+    </ul>
+  </div>
+
+  <div class="ask">
+    <h2>Что осталось за владельцем и заказчиком</h2>
+    <p>Всё остальное уже решено: приоритеты утверждены, доступы есть, вопрос по рекламе против своей бесплатной ссылки закрыт, автор на странице назван, решения по рекламной сети и слою стройки приняты.</p>
+    <ul>
+      <li><strong>Владелец, открыто:</strong> где живёт направление «капитальный ЦОД». АйТек его проектирует и строит, спрос под ним измерен - «строительство центра обработки данных» 389 запросов в месяц, «стоимость строительства цод» 57, «стоимость проектирования цод» 39. Из кампании по контейнерным ЦОД слой убираем, но как направление он остаётся без дома: нужна своя посадочная и своя кампания.</li>
+      <li><strong>Заказчик:</strong> ограничения по географии поставки - куда готов везти и монтировать. Расширение на Россию принято осознанно, но риск не закрыт.</li>
+      <li><strong>Заказчик:</strong> срок от первого обращения до договора; сколько обращений доходит до договора; считаем ли каналом только заявки с сайта или звонки и письма тоже.</li>
+      <li><strong>Заказчик:</strong> чей телефон ставить в визитку рекламного объявления - общий по сайту или подразделения инженерных систем.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <p>Основания плана - измерения 18.09.2026: спрос по слоям (Wordstat через API, двойной счёт снят по ядрам), бесплатный поиск и позиции страницы (Яндекс Вебмастер), содержание страницы, ответы Яндекс Нейро на десять вопросов покупателя, расход рекламы и заявки (API Директа и Метрики). Расход указан с НДС, без учёта скидок.</p>
+    <p>Все числа получены запросами к сервисам напрямую и повторяются скриптами проекта. Реклама здесь - два шага из тринадцати: это и есть главный вывод плана.</p>
+  </footer>
+
+</div>
+</body>
+</html>
