@@ -70,7 +70,7 @@
   .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; overflow-wrap: anywhere; }
   strong { color: var(--ink); font-weight: 600; }
   /* без этого широкая таблица распирает страницу на узком экране */
-  .wrap > *, section > *, .steps > *, .compare > *, .examples > * { min-width: 0; }
+  .wrap > *, section > *, .steps > *, .compare > * { min-width: 0; }
 
   /* шапка */
   .head { display: flex; flex-direction: column; gap: 16px; margin-bottom: 12px; }
@@ -113,12 +113,6 @@
     font-size: clamp(24px, 3.4vw, 31px);
     line-height: 1.18; font-weight: 700; letter-spacing: -.022em;
     margin: 0 0 6px; color: var(--ink); text-wrap: balance;
-    display: flex; gap: 14px; align-items: baseline;
-  }
-  section > h2 .n {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 15px; font-weight: 600; color: var(--accent);
-    letter-spacing: 0; flex: none; padding-top: 2px;
   }
   .sub { font-size: 16px; color: var(--muted); margin: 0 0 20px; max-width: 66ch; }
   section > p { margin: 0 0 16px; max-width: 68ch; color: var(--ink-2); }
@@ -127,16 +121,16 @@
 
   /* полоса этапа */
   .phase {
-    display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 16px;
-    margin: 6px 0 4px; padding: 14px 20px;
+    margin: 10px 0 2px; padding: 16px 22px;
     background: var(--accent-deep); color: var(--surface); border-radius: 4px;
+    display: flex; flex-direction: column; gap: 3px;
   }
-  .phase b { font-size: 21px; font-weight: 700; letter-spacing: -.01em; }
-  .phase span { font-size: 14.5px; opacity: .88; }
+  .phase b { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
+  .phase span { font-size: 15px; opacity: .9; }
 
   /* таблицы */
   .tablewrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 4px; background: var(--surface); box-shadow: var(--shadow); }
-  table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 580px; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; min-width: 640px; }
   th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
   thead th {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
@@ -148,45 +142,61 @@
   tbody tr.pick { background: var(--accent-soft); }
   td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
   td.n { font-weight: 600; }
-  td.zero { color: var(--bad); font-weight: 700; }
-  table.wide1 { min-width: 700px; }
-  table.wide1 td:first-child, table.wide1 th:first-child { width: 30%; }
+  td.step-no { font-family: "IBM Plex Mono", ui-monospace, monospace; font-weight: 600; color: var(--accent); white-space: nowrap; }
   .note { font-size: 14px; color: var(--muted); max-width: 68ch; margin: 14px 0 0; }
 
   /* карточки-числа */
-  .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+  .compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
   .box { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 6px; box-shadow: var(--shadow); }
   .box-label { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 11px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); }
   .box-num { font-size: 34px; font-weight: 700; letter-spacing: -.03em; font-variant-numeric: tabular-nums; line-height: 1.05; }
   .box-sub { font-size: 14px; color: var(--ink-2); }
   .box.bad .box-num { color: var(--bad); }
-  .box.good .box-num { color: var(--good); }
 
   /* шаг плана */
-  .steps { display: flex; flex-direction: column; gap: 14px; }
-  .step { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 20px 22px; box-shadow: var(--shadow); }
-  .step.done-step { border-left: 4px solid var(--good); }
-  .step.wait-step { border-left: 4px solid var(--warn); }
-  .step-head { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; margin-bottom: 8px; }
-  .step-num { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 13px; font-weight: 600; color: var(--accent); flex: none; }
-  .step h3 { margin: 0; font-size: 19px; font-weight: 600; }
-  .step p { margin: 0 0 10px; color: var(--ink-2); font-size: 16.5px; max-width: 70ch; }
-  .step p:last-child { margin-bottom: 0; }
-  .facts { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 10px 0 0; padding-top: 10px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
-  .facts b { color: var(--ink-2); font-weight: 600; }
+  .steps { display: flex; flex-direction: column; gap: 18px; }
+  .step {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+    padding: 24px 26px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; gap: 14px;
+  }
+  .step.big { border-left: 5px solid var(--accent-deep); }
+  .step.small { border-left: 5px solid var(--line-strong); }
+  .step.blocker { border-left: 5px solid var(--warn); }
+  .step-top { display: flex; flex-direction: column; gap: 10px; }
+  .step-title { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: baseline; }
+  .step-no {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 13px; font-weight: 600; color: var(--accent);
+    letter-spacing: .04em; text-transform: uppercase; flex: none;
+  }
+  .step h3 { margin: 0; font-size: 21px; font-weight: 700; letter-spacing: -.015em; }
+  .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+  .tag {
+    font-size: 12.5px; padding: 3px 10px; border-radius: 2px;
+    background: var(--surface-2); border: 1px solid var(--line); color: var(--ink-2);
+    white-space: nowrap;
+  }
+  .legend { display: flex; flex-direction: column; gap: 10px; margin: 4px 0 20px; }
+  .legend-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; font-size: 16px; color: var(--ink-2); }
+  .legend-row .tag { flex: none; }
+  .tag.who { background: var(--accent-soft); border-color: transparent; color: var(--accent-deep); font-weight: 600; }
+  .tag.work-big { background: color-mix(in srgb, var(--warn) 16%, transparent); border-color: transparent; color: var(--warn); font-weight: 600; }
+  .tag.work-small { background: color-mix(in srgb, var(--good) 13%, transparent); border-color: transparent; color: var(--good); font-weight: 600; }
+  .field { display: flex; flex-direction: column; gap: 3px; }
+  .field-name {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 11px; letter-spacing: .11em; text-transform: uppercase; color: var(--muted);
+  }
+  .field p { margin: 0; color: var(--ink-2); font-size: 16.5px; max-width: 72ch; }
+  .field ul { margin: 4px 0 0; padding-left: 20px; color: var(--ink-2); font-size: 16.5px; display: flex; flex-direction: column; gap: 5px; }
   .check {
-    display: block; margin-top: 10px; padding: 9px 14px;
+    padding: 11px 16px;
     background: color-mix(in srgb, var(--good) 10%, var(--surface));
     border-left: 3px solid var(--good); border-radius: 0 3px 3px 0;
-    font-size: 15.5px; color: var(--ink);
+    font-size: 16px; color: var(--ink);
   }
   .check b { color: var(--good); font-weight: 600; }
-
-  .pill { display: inline-block; font-size: 11.5px; font-weight: 600; letter-spacing: .03em; padding: 3px 9px; border-radius: 2px; white-space: nowrap; }
-  .pill.ok { background: color-mix(in srgb, var(--good) 14%, transparent); color: var(--good); }
-  .pill.wait { background: var(--warn-soft); color: var(--warn); }
-  .pill.stop { background: color-mix(in srgb, var(--bad) 13%, transparent); color: var(--bad); }
-  .pill.go { background: var(--accent-soft); color: var(--accent-deep); }
 
   /* выносной вывод */
   .key {
@@ -205,31 +215,30 @@
 
   /* порядок работ */
   .order {
-    margin: 4px 0 20px; padding: 20px 24px;
+    margin: 4px 0 20px; padding: 22px 26px;
     background: var(--warn-soft);
     border: 1px solid color-mix(in srgb, var(--warn) 45%, transparent);
     border-left: 5px solid var(--warn); border-radius: 4px;
     color: var(--ink);
   }
-  .order h3 { margin: 0 0 8px; font-size: 19px; color: var(--warn); }
-  .order p { margin: 0 0 10px; color: var(--ink-2); font-size: 16.5px; max-width: 68ch; }
+  .order h3 { margin: 0 0 10px; font-size: 20px; color: var(--warn); }
+  .order p { margin: 0 0 12px; color: var(--ink-2); font-size: 16.5px; max-width: 70ch; }
   .order p:last-child { margin-bottom: 0; }
 
-  .caveat { background: var(--surface-2); border: 1px dashed var(--line-strong); border-radius: 4px; padding: 22px 24px; margin-top: 30px; }
-  .caveat h2 { margin: 0 0 12px; font-size: 20px; font-weight: 700; }
-  .caveat ul { margin: 0; padding-left: 20px; font-size: 15.5px; color: var(--ink-2); display: flex; flex-direction: column; gap: 10px; }
+  .caveat { background: var(--surface-2); border: 1px dashed var(--line-strong); border-radius: 4px; padding: 24px 26px; margin-top: 30px; }
+  .caveat h2 { margin: 0 0 14px; font-size: 21px; font-weight: 700; }
+  .caveat ul { margin: 0; padding-left: 20px; font-size: 16px; color: var(--ink-2); display: flex; flex-direction: column; gap: 12px; }
 
-  .ask { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 4px; padding: 24px 26px; margin-top: 18px; }
-  .ask h2 { margin: 0 0 6px; font-size: 22px; font-weight: 700; }
-  .ask p { margin: 0 0 16px; color: var(--ink-2); font-size: 16px; max-width: 68ch; }
-  .ask ol, .ask ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 12px; font-size: 16.5px; }
+  .ask { background: var(--accent-soft); border: 1px solid var(--accent); border-radius: 4px; padding: 26px 28px; margin-top: 18px; }
+  .ask h2 { margin: 0 0 8px; font-size: 22px; font-weight: 700; }
+  .ask p { margin: 0 0 16px; color: var(--ink-2); font-size: 16.5px; max-width: 70ch; }
+  .ask ul { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 14px; font-size: 16.5px; color: var(--ink-2); }
 
   footer { border-top: 1px solid var(--line); padding-top: 18px; margin-top: 34px; font-size: 13.5px; color: var(--muted); }
   footer p { margin: 0 0 8px; max-width: 78ch; }
 
   @media (max-width: 640px) {
     body { font-size: 16px; }
-    section > h2 { flex-direction: column; gap: 2px; }
     .verdict, .ask, .caveat, .order, .step { padding: 20px 18px; }
   }
 </style>
@@ -240,60 +249,96 @@
   <header class="head">
     <div class="eyebrow">
       <span>Контейнерные ЦОД · АйТек</span>
-      <span>План 30 / 60 / 90</span>
+      <span>План работ</span>
       <span>18 сентября 2026</span>
     </div>
     <h1>План продвижения КЦОД: 30, 60 и 90 дней</h1>
-    <p class="lede">Тринадцать шагов по всем слоям продвижения, а не только по рекламе. У каждого шага: кто делает, зачем, чем проверяем и к какому сроку. Реклама здесь - два шага из тринадцати.</p>
+    <p class="lede">Двенадцать шагов подряд, от первого к последнему. У каждого написано, что именно делаем, зачем, сколько это работы, кто делает и как поймём, что сработало. Реклама здесь - один шаг из двенадцати.</p>
     <div class="meta">
-      <span><b>Статус:</b> утверждён 18.09.2026, приоритеты не переставляются</span>
+      <span><b>Статус:</b> утверждён 18.09.2026</span>
       <span><b>Точка отсчёта снята:</b> 18.09, до любых правок</span>
-      <span><b>Ближайший выпуск отчёта:</b> 02.10.2026</span>
+      <span><b>Ближайший отчёт:</b> 02.10.2026</span>
     </div>
   </header>
 
   <div class="verdict">
     <h2>Главный ответ на вопрос заказчика</h2>
-    <p>Заказчик спрашивал, вкладываться ли дальше в Директ. Ответ по числам: <strong>Директ оставить, но перестать считать его главным каналом.</strong> Причина не в качестве настройки, а в размере спроса: прямого спроса на наш товар около 4 000 запросов в месяц, и реклама физически не может дать больше, чем есть спроса.</p>
-    <p>Поэтому деньги и время распределяются так: <strong>Директ - точная настройка на 35-45 тыс ₽ в месяц, а рост ищем в бесплатном поиске, в задачном слое запросов и в попадании в ответы ИИ.</strong> За прошлый месяц 73 185 ₽ рекламы дали одну заявку; бесплатные источники со страницы дали семь при нулевых затратах.</p>
+    <p>Заказчик спрашивал, вкладываться ли дальше в Яндекс.Директ. Ответ по числам: <strong>Директ оставить, но перестать считать его главным каналом.</strong> Причина не в качестве настройки, а в размере спроса. Прямого спроса на наш товар около 4 000 запросов в месяц, и реклама физически не может привести больше людей, чем этих запросов существует.</p>
+    <p>Поэтому деньги и время распределяются так: <strong>на рекламу - точная настройка и 35-45 тыс ₽ в месяц, а рост ищем там, где трафик не покупается: в бесплатном поиске, в верхнем слое запросов и в попадании в ответы ИИ.</strong> За прошлый месяц реклама на 73 185 ₽ дала одну заявку; бесплатные источники со страницы дали семь при нулевых затратах.</p>
   </div>
 
   <section>
-    <h2><span class="n">01</span>Откуда взялся план: спрос по слоям</h2>
-    <p class="sub">Замер Wordstat 18.09.2026, двойной счёт снят по ядрам. Это карта того, что люди вообще спрашивают по теме, и где нас в этом нет.</p>
+    <h2>Как устроен этот план</h2>
+    <p>Двенадцать шагов разложены по трём срокам: что успеваем за месяц, что за два и что за три. Внутри каждого срока шаги идут в порядке выполнения, а не по важности.</p>
+    <p>Шаги сильно разные по объёму работы, и это видно по подписи у каждого. Одно дело поправить заголовок страницы - это два часа, и совсем другое написать статью для отраслевой площадки - это неделя вместе с согласованием. Чтобы разница читалась сразу, у каждого шага стоит метка:</p>
+    <div class="legend">
+      <div class="legend-row"><span class="tag work-small">короткая работа</span><span>до одного дня: правка текста, настройка счётчика, замер</span></div>
+      <div class="legend-row"><span class="tag work-big">крупная работа</span><span>несколько дней: новая страница, статья, перенастройка рекламного кабинета</span></div>
+    </div>
+    <p>У каждого шага пять полей, одинаковых по всему плану: <strong>что делаем</strong> (в чём состоит работа), <strong>зачем</strong> (какая цифра за этим стоит), <strong>результат</strong> (что появится, когда шаг закрыт), <strong>как проверим</strong> и <strong>срок</strong>. В рабочих документах проекта у шагов свои обозначения вида Ш-1 и Ш-8; они подписаны, чтобы можно было найти шаг в переписке.</p>
 
+    <h3>Все двенадцать шагов одним списком</h3>
     <div class="tablewrap">
-      <table class="wide1">
+      <table>
         <thead>
-          <tr><th>Слой спроса</th><th class="n">Запросов в месяц</th><th>Что у нас есть сейчас</th><th>Чей шаг</th></tr>
+          <tr><th>Шаг</th><th>Что делаем</th><th>Кто</th><th>Объём работы</th><th>Срок</th></tr>
         </thead>
         <tbody>
-          <tr class="pick"><td><strong>Категория товара</strong>: модульный, контейнерный, мобильный, микро ЦОД</td><td class="n">1 668</td><td>страница есть, но в её подзаголовках нет слова «модульный»</td><td>Ш-3</td></tr>
-          <tr class="pick"><td><strong>Цена</strong>: «стоимость цод», «цод цена», «сколько стоит»</td><td class="n">1 029</td><td>страница на 8-м месте, ноль кликов</td><td>Ш-2</td></tr>
-          <tr class="pick"><td><strong>Покупка прямо</strong>: «купить цод», «цод под ключ»</td><td class="n">903</td><td>страница есть</td><td>Ш-2</td></tr>
-          <tr><td><strong>Задача без названия товара</strong>: «серверная в офисе», «перенос серверной»</td><td class="n">701</td><td>раздела нет, есть чужая страница с нулём кликов</td><td>Ш-8</td></tr>
-          <tr class="pick"><td><strong>Стандарт и требования</strong>: Tier III, 152-ФЗ</td><td class="n">292</td><td>упомянуты в перечислении, в ИИ-ответы не попадаем</td><td>Ш-10, Ш-12</td></tr>
+          <tr class="pick"><td class="step-no">1</td><td>Починить цели в счётчике Метрики</td><td>мы</td><td>до одного дня</td><td>до 25.09</td></tr>
+          <tr><td class="step-no">2</td><td>Заголовок и описание страницы под запрос о цене</td><td>мы и владелец</td><td>до одного дня</td><td>до 25.09</td></tr>
+          <tr><td class="step-no">3</td><td>Слово «модульный» в заголовки на странице</td><td>мы и владелец</td><td>до одного дня</td><td>вместе с шагом 2</td></tr>
+          <tr><td class="step-no">4</td><td>Ссылки на страницу КЦОД с шести страниц сайта</td><td>мы и владелец</td><td>до одного дня</td><td>вместе с шагом 2</td></tr>
+          <tr><td class="step-no">5</td><td>Перенастроить кабинет Яндекс.Директа</td><td>исполнитель</td><td>несколько дней</td><td>до 09.10</td></tr>
+          <tr><td class="step-no">6</td><td>Раздел для тех, кто ещё не знает слова «ЦОД»</td><td>мы и владелец</td><td>несколько дней</td><td>до 17.11</td></tr>
+          <tr><td class="step-no">7</td><td>Имя и должность эксперта на странице</td><td>мы и заказчик</td><td>до одного дня</td><td>до 30.10</td></tr>
+          <tr><td class="step-no">8</td><td>Прямой ответ про стандарт Tier III и срок поставки</td><td>мы и владелец</td><td>до одного дня</td><td>вместе с шагом 7</td></tr>
+          <tr><td class="step-no">9</td><td>Статьи на внешних площадках</td><td>мы и эксперт</td><td>несколько дней на статью</td><td>первая к 30.11</td></tr>
+          <tr><td class="step-no">10</td><td>Материал про требования: Tier III и 152-ФЗ</td><td>мы и эксперт</td><td>несколько дней</td><td>до 17.12</td></tr>
+          <tr><td class="step-no">11</td><td>Пересчитать потолок рекламного канала</td><td>мы</td><td>до одного дня</td><td>17.12</td></tr>
+          <tr><td class="step-no">12</td><td>Отчёт раз в две недели</td><td>мы</td><td>до одного дня на выпуск</td><td>постоянно</td></tr>
         </tbody>
       </table>
     </div>
+    <p class="note">Из двенадцати шагов восемь - короткие, это правки текста и настройки. Четыре крупные: перенастройка кабинета, новый раздел сайта и две статьи. Дорогое по времени начинается только на втором месяце.</p>
+  </section>
 
-    <div class="key">
-      <span class="kl">Что отсюда следует</span>
-      Наш прямой спрос - около <b>4 000 запросов в месяц</b>, и реклама не может дать больше, чем есть спроса. При этом на странице, которая собирает этот спрос бесплатно, мы стоим на восьмом месте. Это и есть причина, по которой рост ищем не в рекламе.
+  <section>
+    <h2>На чём план основан</h2>
+    <p class="sub">Три замера от 18.09.2026. Всё остальное в плане выводится из них.</p>
+
+    <h3>Первое: сколько людей вообще ищут наш товар</h3>
+    <p>Замер частоты запросов в Яндексе, двойной счёт убран. Слева - группы запросов, справа - сколько раз в месяц их набирают.</p>
+    <div class="tablewrap">
+      <table>
+        <thead>
+          <tr><th>Группа запросов</th><th class="n">Запросов в месяц</th><th>Что у нас есть сейчас</th><th>Чем закрываем</th></tr>
+        </thead>
+        <tbody>
+          <tr class="pick"><td><strong>Название товара</strong>: модульный, контейнерный, мобильный, микро ЦОД</td><td class="n">1 668</td><td>страница есть, но слова «модульный» нет ни в одном её заголовке</td><td>шаг 3</td></tr>
+          <tr class="pick"><td><strong>Цена</strong>: «стоимость цод», «цод цена», «сколько стоит»</td><td class="n">1 029</td><td>страница показывается на 8-м месте и не получает кликов</td><td>шаг 2</td></tr>
+          <tr class="pick"><td><strong>Покупка</strong>: «купить цод», «цод под ключ»</td><td class="n">903</td><td>страница есть</td><td>шаг 2</td></tr>
+          <tr><td><strong>Задача без названия товара</strong>: «серверная в офисе», «перенос серверной»</td><td class="n">701</td><td>раздела нет; есть чужая страница сайта, которая даёт ноль кликов</td><td>шаг 6</td></tr>
+          <tr class="pick"><td><strong>Требования</strong>: Tier III, 152-ФЗ</td><td class="n">292</td><td>упомянуты в перечислении; в ответы ИИ по ним не попадаем</td><td>шаги 8 и 10</td></tr>
+        </tbody>
+      </table>
     </div>
-    <p class="note">Прежняя оценка спроса была 1 300 запросов, из неё выведены бюджет и сроки в выпуске 1 отчёта заказчику. Уточнение идёт в выпуск 2 от 02.10: выпуск 1 не переписываем, он снимок на свою дату.</p>
+    <div class="key">
+      <span class="kl">Что это значит</span>
+      Наш прямой спрос - около <b>4 000 запросов в месяц</b> на всю Россию. Это потолок: больше людей, чем ищут, реклама не приведёт никаким бюджетом. При этом страница, которая может собирать тот же спрос бесплатно, стоит на восьмом месте.
+    </div>
 
-    <h3>Точка отсчёта, с которой будем сравнивать</h3>
+    <h3>Второе: где мы находимся сегодня</h3>
+    <p>Эти числа сняты 18.09 до любых правок. С ними будем сравнивать через месяц и через три.</p>
     <div class="compare">
       <div class="box">
-        <span class="box-label">Страница КЦОД, бесплатный поиск</span>
+        <span class="box-label">Страница КЦОД в бесплатном поиске</span>
         <span class="box-num">8,2</span>
-        <span class="box-sub">средняя позиция. 930 показов, 49 кликов, CTR 5,27 % за две недели</span>
+        <span class="box-sub">средняя позиция. За две недели 930 показов и 49 кликов</span>
       </div>
       <div class="box">
         <span class="box-label">Сайт целиком</span>
         <span class="box-num">6,24</span>
-        <span class="box-sub">средняя позиция. 5 043 показа, 347 кликов, CTR 6,88 %</span>
+        <span class="box-sub">средняя позиция. 5 043 показа, 347 кликов</span>
       </div>
       <div class="box bad">
         <span class="box-label">Заявки со страницы за месяц</span>
@@ -301,196 +346,418 @@
         <span class="box-sub">одна с рекламы за 73 185 ₽, семь с прямых заходов, ноль с бесплатного поиска</span>
       </div>
     </div>
-    <p class="note">Снимки лежат в проекте и повторяются скриптами. До 18.09 снимков не было ни одного, то есть план на месяцы нельзя было проверить.</p>
+
+    <h3>Третье: что происходит в ответах ИИ</h3>
+    <p>Мы задали Яндекс Нейро десять вопросов, которые задаёт покупатель. В четырёх ответах из десяти нас цитируют, причём на вопрос о стоимости мы первый источник. В обзорных вопросах вроде «кто в России производит» нас нет: такие ответы собираются с чужих площадок - Хабра, отраслевых изданий, сайтов конкурентов.</p>
+    <p>Отдельно мы посмотрели, приходят ли к нам люди прямо из чатов с ИИ. За полгода таких визитов восемь: четыре из Qwen, три из ChatGPT, один из Claude. Мало, но ведут себя эти люди лучше всех: в среднем от пяти до восьми минут на странице. Переходы из ответов Яндекса в эту статистику не попадают - он отдаёт их как обычный переход из поиска.</p>
   </section>
 
   <section>
-    <h2><span class="n">02</span>Кто что делает</h2>
+    <h2>Порядок работ</h2>
+    <div class="order">
+      <h3>Два правила, которые важнее скорости</h3>
+      <p><strong>Первое: сначала чиним измерение, потом трогаем рекламу.</strong> Если менять настройки кабинета и одновременно мерить результат, через месяц будет не разобрать, что дала правка, а что - переобучение автоматики Яндекса. Поэтому шаг 1 идёт раньше шага 5, и никак иначе.</p>
+      <p><strong>Второе: правки страницы выкладываем одной пачкой.</strong> Шаги 2, 3 и 4 меняют одну и ту же страницу. Если выкладывать их по одному, к следующему замеру мы не поймём, что именно сработало, а поисковик всё равно переобходит страницу целиком.</p>
+    </div>
     <div class="tablewrap">
       <table>
-        <thead><tr><th>Кто</th><th>За что отвечает</th></tr></thead>
+        <thead><tr><th>Кто</th><th>За что отвечает в этом плане</th></tr></thead>
         <tbody>
-          <tr><td><strong>Мы</strong></td><td>замеры, цели в счётчике, тексты и задания, выпуски отчёта</td></tr>
+          <tr><td><strong>Мы</strong></td><td>замеры, цели в счётчике, тексты страниц и статей, задания исполнителю, выпуски отчёта</td></tr>
           <tr><td><strong>Исполнитель</strong></td><td>все правки в кабинете Яндекс.Директа, по нашим заданиям</td></tr>
-          <tr><td><strong>Владелец</strong></td><td>доступы, решения по бюджету и приоритетам, выкладка страницы на бой</td></tr>
-          <tr><td><strong>Заказчик</strong></td><td>ответы о сделках, о географии поставки, согласие автора на странице</td></tr>
+          <tr><td><strong>Владелец</strong></td><td>доступы, решения по бюджету, выкладка правок страницы на сайт</td></tr>
+          <tr><td><strong>Заказчик</strong></td><td>ответы про сделки и географию поставки, согласие эксперта на упоминание</td></tr>
         </tbody>
       </table>
     </div>
-
-    <div class="order">
-      <h3>Порядок важнее списка</h3>
-      <p><strong>Сначала чиним измерение, потом трогаем кабинет Директа.</strong> Менять настройки и одновременно мерять результат нельзя: автоматические стратегии переобучаются, и через месяц будет невозможно сказать, что дала правка, а что переобучение.</p>
-      <p>Правки страницы (шаги Ш-2, Ш-3, Ш-4) идут <strong>одной выкладкой</strong> через набор лендингов, а не по одной: иначе к следующему замеру мы не поймём, что сработало.</p>
-    </div>
   </section>
 
   <section>
-    <h2><span class="n">03</span>Тридцать дней: починить измерение и снять дешёвые ограничения</h2>
-    <p class="sub">Правки текста и мета-тегов, ни одной новой страницы. До 18.10.2026.</p>
+    <h2>Первый месяц: до 18 октября</h2>
+    <p class="sub">Чиним измерение и снимаем ограничения, которые ничего не стоят. Новых страниц на этом этапе нет, только правки текста и настройки.</p>
 
-    <div class="phase"><b>30 дней</b><span>шесть шагов · два из них про рекламу · ни одной новой страницы</span></div>
+    <div class="phase">
+      <b>Шаги 1-5 · до 18 октября</b>
+      <span>четыре короткие работы и одна крупная - перенастройка рекламного кабинета</span>
+    </div>
 
     <div class="steps">
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-1</span><h3>Починить цели в счётчике Метрики</h3><span class="pill go">делаем мы · до 25.09</span></div>
-        <p>Завести отдельную цель на отправку формы именно со страницы КЦОД; выбрать одну цель из трёх дублей главной; вывести из отчётности шесть навигационных целей; поставить фильтр на адреса предпросмотра.</p>
-        <p><strong>Зачем.</strong> Сейчас «заявка по КЦОД» каждый раз считается вручную фильтром по странице входа. Это медленно и невоспроизводимо, и любой следующий вывод об эффективности будет таким же спорным, как нынешний.</p>
-        <span class="check"><b>Чем проверяем:</b> через неделю после правки цель по странице КЦОД показывает то же число, что ручной фильтр за тот же период.</span>
-        <div class="facts"><span><b>Блокирует:</b> все правки в кабинете Директа</span><span><b>Стоит:</b> ничего, наша работа</span></div>
+      <div class="step blocker">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 1</span><h3>Починить цели в счётчике Метрики</h3></div>
+          <div class="tags">
+            <span class="tag who">делаем мы</span>
+            <span class="tag work-small">короткая работа, до одного дня</span>
+            <span class="tag">срок: до 25 сентября</span>
+            <span class="tag">в документах: Ш-1</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Цель в счётчике - это правило «считать событием то, что человек отправил форму». Сейчас таких правил шестнадцать, три из них дублируют друг друга, а шесть считают обычные переходы по сайту. Мы заводим одну отдельную цель на отправку формы именно со страницы контейнерных ЦОД, выбираем одну главную из трёх дублей, убираем из отчётности шесть лишних и ставим фильтр на служебную копию страницы, которой мы сами пользуемся для проверок.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>Сегодня заявку по КЦОД приходится каждый раз считать вручную: отбирать визиты по странице входа. Это долго, и результат нельзя повторить точно. Любой следующий спор об эффективности упрётся в то же самое место.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>Заявки со страницы КЦОД считаются сами и одинаково в любом отчёте. Появляется цифра, на которую можно ссылаться, не пересчитывая.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> через неделю после правки цель по странице показывает то же число, что ручной подсчёт за тот же период. Если числа разошлись - цель настроена неверно.</div>
+        <div class="field">
+          <span class="field-name">Почему этот шаг первый</span>
+          <p>Пока измерение не починено, нельзя трогать рекламный кабинет: результат правок будет не с чем сравнить.</p>
+        </div>
       </div>
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-2</span><h3>Заголовок и описание страницы под ценовой запрос</h3><span class="pill go">текст к 25.09</span></div>
-        <p>Довести ответ про цену до заголовка в результатах поиска. Цена «от 10 млн ₽» на странице есть, конкуренты цен не показывают - это наше преимущество, и в ответах ИИ оно уже работает: на вопрос о стоимости мы первый источник.</p>
-        <p><strong>Зачем.</strong> По запросам «цод стоимость», «дата центр стоимость», «сколько стоит дата центр» мы стоим на 7-9 месте и получаем ноль кликов. Люди видят нас и не заходят. Слой измерен: 1 029 запросов в месяц.</p>
-        <span class="check"><b>Чем проверяем:</b> CTR по ценовым запросам через три недели после выкладки. Ориентир - выйти с нуля хотя бы на 4-5 %, уровень соседних запросов.</span>
-        <div class="facts"><span><b>Кто:</b> текст наш, утверждение владельца, выкладка через набор лендингов</span></div>
+      <div class="step small">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 2</span><h3>Заголовок и описание страницы под запрос о цене</h3></div>
+          <div class="tags">
+            <span class="tag who">текст наш, выкладка за владельцем</span>
+            <span class="tag work-small">короткая работа, до одного дня</span>
+            <span class="tag">срок: текст до 25 сентября</span>
+            <span class="tag">в документах: Ш-2</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Переписываем два поля, которые человек видит в результатах поиска: заголовок страницы и описание под ним. Сейчас в них нет ответа на вопрос о цене, хотя на самой странице цена есть - «от 10 млн ₽».</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>Запросы про цену - 1 029 в месяц. По ним мы показываемся на 7-9 месте и получаем ноль переходов: человек нас видит и проходит мимо. При этом цена - наше преимущество: конкуренты её не публикуют, и в ответе ИИ на вопрос о стоимости мы уже стоим первым источником.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>В результатах поиска по запросу про цену человек сразу видит ответ, а не общее описание услуги.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> доля переходов по ценовым запросам через три недели после выкладки. Ориентир - выйти с нуля хотя бы на 4-5 %, как на соседних запросах.</div>
       </div>
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-3</span><h3>Слово «модульный» в структуру страницы</h3><span class="pill go">вместе с Ш-2</span></div>
-        <p>Минимум - в H1 и два-три подзаголовка. Сейчас в двадцати подзаголовках страницы слова «модульный» нет ни разу, всё названо «контейнерный ЦОД» или «КЦОД».</p>
-        <p><strong>Зачем.</strong> «Модульный ЦОД» спрашивают 513 раз в месяц против 202 у «контейнерного». Самое частое слово темы есть у нас только в тексте, а в структуре его нет. Товар переименовывать не нужно, нужно, чтобы человек увидел своё слово.</p>
-        <span class="check"><b>Чем проверяем:</b> показы по запросам со словом «модульный» в выгрузке Вебмастера через 3-4 недели.</span>
+      <div class="step small">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 3</span><h3>Слово «модульный» в заголовки на странице</h3></div>
+          <div class="tags">
+            <span class="tag who">текст наш, выкладка за владельцем</span>
+            <span class="tag work-small">короткая работа, до одного дня</span>
+            <span class="tag">срок: вместе с шагом 2</span>
+            <span class="tag">в документах: Ш-3</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Добавляем слово «модульный» в главный заголовок страницы и в два-три подзаголовка. Сейчас на странице двадцать подзаголовков, и ни в одном этого слова нет: везде «контейнерный ЦОД» или сокращение «КЦОД».</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>«Модульный ЦОД» спрашивают 513 раз в месяц, «контейнерный» - 202. Самое частое слово темы у нас встречается только в тексте, а в заголовках, по которым поисковик понимает, о чём страница, его нет. Товар переименовывать не нужно - нужно, чтобы человек увидел на странице своё слово.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>Страница начинает показываться по запросам со словом «модульный», которых вдвое больше, чем по нашему нынешнему.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> через три-четыре недели в выгрузке Вебмастера появляются показы по запросам со словом «модульный».</div>
       </div>
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-4</span><h3>Обратные ссылки со страниц проектов</h3><span class="pill go">вместе с Ш-2 и Ш-3</span></div>
-        <p>Поставить ссылку на страницу КЦОД с каждой из пяти страниц проектов про ЦОД и добавить страницу в раздел «Услуги».</p>
-        <p><strong>Зачем.</strong> Страница ссылается на шесть своих проектов, а <strong>ни один не ссылается назад</strong>. Входящих ссылок внутри сайта всего две, обе из родительской цепочки; с главной и с раздела «Услуги» ссылок нет. Правка текста, денег не стоит.</p>
-        <span class="check"><b>Чем проверяем:</b> повторная проверка публикации показывает входящие ссылки; позиция страницы в снимке через месяц.</span>
+      <div class="step small">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 4</span><h3>Ссылки на страницу КЦОД с шести страниц сайта</h3></div>
+          <div class="tags">
+            <span class="tag who">список наш, выкладка за владельцем</span>
+            <span class="tag work-small">короткая работа, до одного дня</span>
+            <span class="tag">срок: вместе с шагом 2</span>
+            <span class="tag">в документах: Ш-4</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Ставим ссылку на страницу контейнерных ЦОД с пяти страниц выполненных проектов и добавляем её в раздел «Услуги».</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>Сейчас связь односторонняя: страница КЦОД ссылается на шесть своих проектов, и ни один проект не ссылается обратно. Всего на неё ведут две ссылки внутри сайта, обе из общего меню. Для поисковика количество внутренних ссылок - признак того, насколько страница важна на сайте.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>Страница перестаёт быть тупиковой внутри сайта. Правка текста, денег не стоит.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> повторная проверка публикации показывает входящие ссылки; позиция страницы в замере через месяц.</div>
       </div>
 
-      <div class="step done-step">
-        <div class="step-head"><span class="step-num">Ш-5 и Ш-6</span><h3>Кабинет Директа: задание исполнителю</h3><span class="pill ok">задание собрано</span></div>
-        <p>География на всю Россию, бюджет 35-45 тыс ₽ в месяц, замена широких фраз точными, починка разметки рекламных ссылок, стратегия по кликам вместо конверсий, второй заголовок и визитка, корректировки ставок, рекламная сеть только догоняющим показом, и снятие рекламы с запросов, где мы в топ-5 бесплатной выдачи.</p>
-        <p><strong>Зачем.</strong> Из 32 249 ₽ поискового расхода на слова нашего товара ушло 9 770 ₽, то есть 30 %. Рекламная сеть съела 40 414 ₽ и не дала ни одной заявки.</p>
-        <p>Подробности и все девять шагов - <a href="../zadanie/">на отдельной странице задания</a>.</p>
-        <span class="check"><b>Чем проверяем:</b> через две недели после правок доля расхода на словах товара не ниже 70 %, рекламные визиты разложены по кампаниям, расход в границах 35-45 тыс ₽.</span>
-        <div class="facts"><span><b>Кто:</b> исполнитель, по нашему заданию</span><span><b>Задание к:</b> 02.10</span><span><b>Правки до:</b> 09.10</span><span><b>⛔ Только после Ш-1</b></span></div>
+      <div class="step big">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 5</span><h3>Перенастроить кабинет Яндекс.Директа</h3></div>
+          <div class="tags">
+            <span class="tag who">делает исполнитель</span>
+            <span class="tag work-big">крупная работа, несколько дней</span>
+            <span class="tag">задание к 02.10, правки до 09.10</span>
+            <span class="tag">в документах: Ш-5 и Ш-6</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Это самый объёмный шаг первого месяца, поэтому он вынесен на отдельную страницу: <a href="../zadanie/">разбор кабинета и задание исполнителю</a>. Коротко, девять пунктов:</p>
+          <ul>
+            <li>расширить географию показов с Центрального округа на всю Россию и выставить бюджет 35-45 тыс ₽ в месяц;</li>
+            <li>заменить широкие фразы точными - сейчас 53 фразы из 59 построены на словах «дата центр», а покупают по слову «ЦОД»;</li>
+            <li>добавить минус-слова по хвостам: чужие бренды, зарубежные площадки, справочные вопросы;</li>
+            <li>снять рекламу с трёх запросов, где наша бесплатная ссылка и так в первой пятёрке;</li>
+            <li>починить разметку ссылок: сейчас в адрес подставляются буквы вместо значений, и визиты нельзя разложить по кампаниям;</li>
+            <li>сменить стратегию: пока заявок мало, считать клики, а не конверсии;</li>
+            <li>добавить второй заголовок и визитку в объявления и сделать второй вариант объявления для сравнения;</li>
+            <li>понизить ставку для телефонов и планшетов;</li>
+            <li>в рекламной сети оставить только показ тем, кто уже был на странице.</li>
+          </ul>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>За месяц реклама потратила 73 185 ₽ и привела одну заявку. Из 32 249 ₽, потраченных на поиске, на слова нашего товара ушло 9 770 ₽ - меньше трети. Остальное купило показы людям, которым контейнерный ЦОД не нужен. Рекламная сеть потратила 40 414 ₽ и не дала ни одной заявки.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>Реклама показывается по словам нашего товара, визиты видно в разрезе кампаний, а расход укладывается в 35-45 тыс ₽.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> через две недели после правок доля расхода на словах товара - не ниже 70 % против нынешних 30 %; визиты разложены по кампаниям; расход в границах бюджета.</div>
+        <div class="field">
+          <span class="field-name">Важное ограничение</span>
+          <p>Шаг начинается только после шага 1 и делается одним заходом. После правок две недели ничего не трогаем, иначе сравнивать будет не с чем.</p>
+        </div>
       </div>
 
     </div>
   </section>
 
   <section>
-    <h2><span class="n">04</span>Шестьдесят дней: занять верх воронки и доверие</h2>
-    <p class="sub">Здесь появляется новая страница, то есть этап дороже по времени. До 17.11.2026.</p>
+    <h2>Второй месяц: до 17 ноября</h2>
+    <p class="sub">Занимаем верх воронки и работаем с доверием. Здесь появляется новый раздел сайта, поэтому этап дороже по времени.</p>
 
-    <div class="phase"><b>60 дней</b><span>три шага · одна новая точка входа · работа с доверием</span></div>
+    <div class="phase">
+      <b>Шаги 6-8 · до 17 ноября</b>
+      <span>одна крупная работа - новый раздел, и две короткие правки страницы</span>
+    </div>
 
     <div class="steps">
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-8</span><h3>Задачный слой запросов</h3><span class="pill go">к 17.11</span></div>
-        <p>Раздел под людей, которые ещё не знают слова «ЦОД»: «серверная в офисе» (184 запроса), «где разместить серверы компании» (121), «перенос серверной» (109), «модернизация серверной» (94), «резервный ЦОД» (89).</p>
-        <p><strong>Зачем.</strong> 701 запрос в месяц, верх воронки и самый дешёвый трафик. Отдельная выгода: у сайта уже есть страница «модернизация серверной под ключ» с 52 показами и нулём кликов - её можно не делать с нуля, а починить.</p>
-        <span class="check"><b>Чем проверяем:</b> показы и клики по этим запросам; заявки по цели, привязанной к странице.</span>
+      <div class="step big">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 6</span><h3>Раздел для тех, кто ещё не знает слова «ЦОД»</h3></div>
+          <div class="tags">
+            <span class="tag who">текст наш, выкладка за владельцем</span>
+            <span class="tag work-big">крупная работа, несколько дней</span>
+            <span class="tag">срок: до 17 ноября</span>
+            <span class="tag">в документах: Ш-8</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Пишем раздел под запросы людей, которые описывают свою задачу обычными словами: «серверная в офисе» (184 запроса в месяц), «где разместить серверы компании» (121), «перенос серверной» (109), «модернизация серверной» (94), «резервный ЦОД» (89).</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>Это 701 запрос в месяц и самый верх воронки: человек ещё не выбирает поставщика, он только формулирует проблему. Такой трафик самый дешёвый, и конкуренции за него меньше. Отдельная выгода: у сайта уже есть страница «модернизация серверной под ключ», которая получает 52 показа и ноль кликов - её можно не делать с нуля, а переписать.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>У сайта появляется вход для людей, которые пока не ищут «ЦОД», и путь с него на страницу контейнерных ЦОД.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> показы и переходы по этим запросам; заявки по цели, привязанной к новому разделу.</div>
       </div>
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-9</span><h3>Автор и экспертность на странице</h3><span class="pill go">к 30.10</span></div>
-        <p>Имя, должность и опыт на странице. Автор определён: <strong>руководитель подразделения инженерных систем</strong>, тот же человек, который читает отчёт.</p>
-        <p><strong>Зачем.</strong> Единственное настоящее замечание проверки качества - не видно, кто автор и почему ему верить. Нужно и для заказчика с чеком от 10 млн ₽, и для попадания в ответы ИИ: обзорные ответы собираются с площадок, где у текста есть автор.</p>
-        <span class="check"><b>Чем проверяем:</b> проверка качества перестаёт выдавать это замечание; при повторном замере ИИ смотрим, появились ли мы в обзорных вопросах.</span>
-        <div class="facts"><span><b>Зависит от:</b> согласия названного человека</span></div>
+      <div class="step small">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 7</span><h3>Имя и должность эксперта на странице</h3></div>
+          <div class="tags">
+            <span class="tag who">текст наш, согласие за заказчиком</span>
+            <span class="tag work-small">короткая работа, до одного дня</span>
+            <span class="tag">срок: до 30 октября</span>
+            <span class="tag">в документах: Ш-9</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Добавляем на страницу имя, должность и опыт человека, который отвечает за эти проекты. Кто именно - решено: руководитель подразделения инженерных систем, тот же человек, который читает отчёт.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>Это единственное содержательное замечание автоматической проверки качества страницы: не видно, кто автор и почему ему верить. Для покупателя с чеком от 10 млн ₽ это важно, и для ответов ИИ тоже: обзорные ответы собираются с площадок, где у текста есть автор.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>За страницей виден живой специалист, а не безымянная компания.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> проверка качества перестаёт выдавать это замечание; при следующем замере смотрим, появились ли мы в обзорных ответах ИИ.</div>
       </div>
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-10</span><h3>Явный ответ про Tier III и про сроки</h3><span class="pill go">вместе с Ш-9</span></div>
-        <p>Формулировка вида «делаем ЦОД по Tier III / TIA-942 за 3-5 месяцев», а не упоминание стандарта в перечислении.</p>
-        <p><strong>Зачем.</strong> И стандарт, и срок на странице есть, но в ИИ-ответы на вопросы «кто делает по Tier III» и «за какой срок можно построить» мы не попадаем. Группа запросов про стандарт и требования - 292 в месяц.</p>
-        <span class="check"><b>Чем проверяем:</b> повторный замер ИИ-ответов по этим двум вопросам.</span>
+      <div class="step small">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 8</span><h3>Прямой ответ про стандарт Tier III и срок поставки</h3></div>
+          <div class="tags">
+            <span class="tag who">текст наш, выкладка за владельцем</span>
+            <span class="tag work-small">короткая работа, до одного дня</span>
+            <span class="tag">срок: вместе с шагом 7</span>
+            <span class="tag">в документах: Ш-10</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Формулируем на странице прямое утверждение: «делаем ЦОД по стандарту Tier III / TIA-942 за 3-5 месяцев». Сейчас и стандарт, и срок на странице есть, но упомянуты внутри перечислений.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>На вопросы «кто делает по Tier III» и «за какой срок можно построить» ИИ отвечает чужими источниками: короткое прямое утверждение он находит, а упоминание в списке - нет. Запросов про требования - 292 в месяц.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>На два частых вопроса покупателя страница отвечает одной фразой, которую легко процитировать.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> повторный замер ответов ИИ по этим двум вопросам.</div>
       </div>
 
     </div>
   </section>
 
   <section>
-    <h2><span class="n">05</span>Девяносто дней: выйти за пределы своего сайта</h2>
-    <p class="sub">И пересчитать потолок канала на новых числах. До 17.12.2026.</p>
+    <h2>Третий месяц: до 17 декабря</h2>
+    <p class="sub">Выходим за пределы своего сайта и пересчитываем потолок рекламы на новых числах.</p>
 
-    <div class="phase"><b>90 дней</b><span>три шага · единственный слой, который мы не трогали вовсе</span></div>
+    <div class="phase">
+      <b>Шаги 9-12 · до 17 декабря</b>
+      <span>две крупные работы - статьи, и два коротких замера</span>
+    </div>
 
     <div class="steps">
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-11</span><h3>Внешние упоминания</h3><span class="pill go">первая публикация к 30.11</span></div>
-        <p>Публикации на площадках, с которых Яндекс собирает обзорные ответы. Список получен замером, не выдуман: habr.com (цитируется в трёх ответах из десяти), tech-expo.ru и powerunit.ru (по два). Своими силами доступны именно они, остальные в списке - конкуренты и интеграторы.</p>
-        <p><strong>Зачем.</strong> Единственный слой, который мы не трогали вовсе, и именно он решает, попадём ли мы в обзорные ИИ-ответы «кто в России производит» и «сравни производителей». Своей страницей в такой ответ не попасть. Ориентир по объёму работы - GreenMDC: 63 страницы пресс-центра и 149 новостей.</p>
-        <span class="check"><b>Чем проверяем:</b> повторный замер ИИ-ответов по обзорным вопросам; упоминания домена в выдаче.</span>
-        <div class="facts"><span><b>Дальше:</b> по одной публикации в месяц</span></div>
+      <div class="step big">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 9</span><h3>Статьи на внешних площадках</h3></div>
+          <div class="tags">
+            <span class="tag who">текст наш, факты от эксперта</span>
+            <span class="tag work-big">крупная работа, несколько дней на статью</span>
+            <span class="tag">первая публикация к 30 ноября</span>
+            <span class="tag">в документах: Ш-11</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Пишем и размещаем статьи на площадках, с которых поисковик собирает обзорные ответы. Список не придуман, а получен замером: Хабр цитируется в трёх ответах из десяти, tech-expo.ru и powerunit.ru - по два. Своими силами доступны именно они; остальные площадки в списке - это сайты конкурентов и интеграторов.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>Это единственный слой, которым мы не занимались вовсе, и именно он решает, попадём ли мы в ответы на вопросы «кто в России производит» и «сравни производителей». Своей страницей в такой ответ попасть нельзя: он собирается со сторонних источников. Для понимания масштаба: у конкурента GreenMDC 63 страницы пресс-центра и 149 новостей.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>Компания появляется там, откуда ИИ и поисковик берут ответы об отрасли. Дальше - по одной публикации в месяц.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> повторный замер ответов ИИ по обзорным вопросам и упоминания сайта в выдаче.</div>
+        <div class="field">
+          <span class="field-name">Что нужно от компании</span>
+          <p>Статью нельзя написать без фактов: нужен один разговор с инженером на час-полтора. Всё остальное - наша работа.</p>
+        </div>
       </div>
 
-      <div class="step">
-        <div class="step-head"><span class="step-num">Ш-12</span><h3>Группа запросов вокруг стандарта</h3><span class="pill go">к 17.12</span></div>
-        <p>Материал под Tier III и 152-ФЗ - 292 запроса в месяц у людей, которые разбираются в требованиях до выбора поставщика.</p>
-        <span class="check"><b>Чем проверяем:</b> показы по группе «стандарт и требования».</span>
+      <div class="step big">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 10</span><h3>Материал про требования: Tier III и 152-ФЗ</h3></div>
+          <div class="tags">
+            <span class="tag who">текст наш, факты от эксперта</span>
+            <span class="tag work-big">крупная работа, несколько дней</span>
+            <span class="tag">срок: до 17 декабря</span>
+            <span class="tag">в документах: Ш-12</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Пишем материал для людей, которые сначала разбираются в требованиях и только потом выбирают поставщика: что означает Tier III на практике, что требует 152-ФЗ к размещению данных, как это влияет на состав оборудования.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>292 запроса в месяц, и это аудитория, которая приходит подготовленной. Шаг 8 отвечает на такой вопрос одной фразой на странице товара, а здесь - развёрнутый материал, на который можно ссылаться.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>У компании появляется собственный материал по теме требований, а не упоминание стандарта в списке преимуществ.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> показы по группе запросов про стандарт и требования.</div>
       </div>
 
-      <div class="step wait-step">
-        <div class="step-head"><span class="step-num">Ш-13</span><h3>Пересчёт потолка канала</h3><span class="pill wait">17.12, не раньше</span></div>
-        <p>Пересчитать, сколько канал может дать, на числах после двух месяцев работы.</p>
-        <p><strong>Зачем.</strong> Утверждённые 35-45 тыс ₽ в месяц считались от прежней оценки спроса в 1 300 запросов. Теперь известно, что прямой спрос около 4 000, то есть втрое больше. <strong>Потолок канала выше утверждённого бюджета.</strong></p>
-        <p>⛔ Не раньше двух месяцев работы: менять бюджет и одновременно мерять результат нельзя.</p>
+      <div class="step small">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 11</span><h3>Пересчитать потолок рекламного канала</h3></div>
+          <div class="tags">
+            <span class="tag who">делаем мы</span>
+            <span class="tag work-small">короткая работа, до одного дня</span>
+            <span class="tag">срок: 17 декабря, не раньше</span>
+            <span class="tag">в документах: Ш-13</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>Считаем заново, сколько реклама может дать в месяц, уже на числах после двух месяцев работы перенастроенных кампаний.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>Утверждённые 35-45 тыс ₽ в месяц считались от старой оценки спроса в 1 300 запросов. Теперь известно, что прямой спрос около 4 000, то есть втрое больше, и потолок канала выше утверждённого бюджета. Но менять бюджет прямо сейчас нельзя: тогда не с чем будет сравнивать результат правок.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Результат</span>
+          <p>Решение о бюджете на следующий период принимается по факту, а не по старой оценке.</p>
+        </div>
+        <div class="check"><b>Как проверим:</b> расчёт опирается на фактический расход и число заявок за два месяца, а не на оценку спроса.</div>
+      </div>
+
+      <div class="step small">
+        <div class="step-top">
+          <div class="step-title"><span class="step-no">Шаг 12</span><h3>Отчёт раз в две недели</h3></div>
+          <div class="tags">
+            <span class="tag who">делаем мы</span>
+            <span class="tag work-small">короткая работа на каждый выпуск</span>
+            <span class="tag">02.10, 16.10, 30.10, 13.11, 27.11, 11.12</span>
+          </div>
+        </div>
+        <div class="field">
+          <span class="field-name">Что делаем</span>
+          <p>К каждому выпуску: снимаем свежие позиции и показы, сравниваем с предыдущим замером, считаем заявки по цели, берём расход рекламы за период и обновляем страницу отчёта заказчику. Раз в месяц дополнительно проверяем качество страницы и заново замеряем ответы ИИ.</p>
+        </div>
+        <div class="field">
+          <span class="field-name">Зачем</span>
+          <p>Главная жалоба заказчика была не в том, что реклама плохая, а в том, что о ходе работ никто не сообщал. Регулярный отчёт по одной и той же форме закрывает это и заодно не даёт спорить о впечатлениях вместо чисел.</p>
+        </div>
+        <div class="check"><b>Как читаем результат:</b> изменения меньше 5 % считаем шумом, а не результатом. Один замер ответов ИИ - это один снимок, тренд по нему не строится.</div>
       </div>
 
     </div>
-  </section>
-
-  <section>
-    <h2><span class="n">06</span>Ритм проверки</h2>
-    <p class="sub">Отчётность раз в две недели. Выпуски: 02.10, 16.10, 30.10, 13.11, 27.11, 11.12.</p>
-    <p>К каждому выпуску: снимаем выгрузку Вебмастера и сравниваем с предыдущим замером, считаем заявки по цели, привязанной к странице, берём расход Директа за период и обновляем страницу отчёта заказчику. Раз в месяц дополнительно: проверка качества страницы, замер ответов ИИ, видимость в Алисе.</p>
-
-    <h3>Что обязано попасть в выпуск от 02.10</h3>
-    <div class="tablewrap">
-      <table class="wide1">
-        <thead><tr><th>Что</th><th>Почему обязательно</th></tr></thead>
-        <tbody>
-          <tr class="pick"><td><strong>Спрос уточнён: ~6 700 запросов, прямой ~4 000</strong> вместо 1 300</td><td>это несущее число раздела 5 выпуска 1: из него выведены бюджет, число обращений и срок ответа</td></tr>
-          <tr><td>Ценовой слой 1 029 запросов в месяц</td><td>подкрепляет шаг «поднять страницу с 8-го места»: люди ищут цену, видят нас и не кликают</td></tr>
-          <tr><td>Потолок канала выше утверждённого бюджета</td><td>сказать прямо, что 35-45 тыс ₽ считались от прежних чисел, а пересчёт - 17.12</td></tr>
-          <tr><td>Точка отсчёта снята 18.09</td><td>со выпуска 2 появляется сравнение с предыдущим замером, а не «по впечатлениям»</td></tr>
-          <tr><td>Заявки разложены по источникам правильно</td><td>семь контактов - это прямые заходы, у бесплатного поиска ноль при 125 визитах</td></tr>
-          <tr><td>Ссылки внутри сайта идут в одну сторону</td><td>шесть страниц проектов не ссылаются на страницу КЦОД; правка текста, денег не стоит</td></tr>
-          <tr><td>Что сделано по целям счётчика и по кабинету Директа</td><td>заявка считается автоматически; задание исполнителю отдано</td></tr>
-          <tr><td>Вопрос про географию поставки</td><td>куда заказчик готов везти и монтировать: расширение на Россию принято, риск не закрыт</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">Изменения меньше 5 % считаем шумом, а не результатом. Один замер ИИ-ответов - это один снимок, тренд по нему не строится.</p>
   </section>
 
   <div class="caveat">
-    <h2>Чего не делаем и почему</h2>
+    <h2>Чего мы намеренно не делаем</h2>
     <ul>
-      <li><strong>Отраслевые страницы.</strong> Спроса нет: «ЦОД для банка» 20 запросов, «для промышленности» 9, «для госзаказчика» 0. Конкурент DATARK строит сайт по отраслям, это выглядит образцом, но спроса под ним нет.</li>
-      <li><strong>Страницы под «мобильную серверную».</strong> 300 запросов в месяц, но спрос замусорен разработкой мобильных приложений. Без отдельной проверки не берём.</li>
-      <li><strong>Страницу «против конкурента».</strong> В поставке за 10 млн ₽ она читается как выпад в сторону тех, с кем можно оказаться в одном конкурсе.</li>
-      <li><strong>Слой аренды и размещения.</strong> Не наша тема, решение владельца 18.09. Из карты спроса убран, заменявшее конкурентную страницу сравнение «свой ЦОД против аренды стойки» отменено вместе с ним. В рекламе арендные запросы уходят в минус-слова.</li>
-      <li><strong>Калькулятор стоимости и связку релизов со страницей.</strong> Первое - работа программиста, а не правка текста; второе требует постоянной дисциплины, держать её пока не на чем.</li>
-      <li><strong>Технический аудит всего сайта.</strong> Это отдельный проект, туда же canonical без www и карта сайта, не обновлявшаяся с 2022 года.</li>
-      <li><strong>Машинную раскладку фраз и машинные гипотезы запросов.</strong> Прогнали 18.09, в нашей нише не работают.</li>
+      <li><strong>Отраслевые страницы</strong> вроде «ЦОД для банка». Спроса нет: «ЦОД для банка» - 20 запросов в месяц, «для промышленности» - 9, «для госзаказчика» - ноль. Конкурент DATARK строит сайт по отраслям, это выглядит убедительно, но под этим нет запросов.</li>
+      <li><strong>Страницы под «мобильную серверную».</strong> Формально 300 запросов в месяц, но спрос перемешан с разработкой мобильных приложений. Без отдельной проверки браться нельзя.</li>
+      <li><strong>Страницу «мы против конкурента».</strong> В поставке за 10 млн ₽ она читается как выпад в сторону тех, с кем можно оказаться в одном конкурсе.</li>
+      <li><strong>Всё про аренду и размещение оборудования.</strong> Решение владельца: не наша тема. Спрос там есть, но продаём мы не место в чужом ЦОД, а собственный. Арендные запросы уходят в минус-слова рекламы.</li>
+      <li><strong>Калькулятор стоимости на странице.</strong> Это работа программиста, а не правка текста; вернёмся к нему, когда будет видно, что ценовые запросы дают трафик.</li>
+      <li><strong>Технический аудит всего сайта.</strong> Это отдельный проект: там же адрес сайта без www в служебных тегах и карта сайта, не обновлявшаяся с 2022 года.</li>
     </ul>
   </div>
 
   <div class="ask">
-    <h2>Что осталось за владельцем и заказчиком</h2>
-    <p>Всё остальное уже решено: приоритеты утверждены, доступы есть, вопрос по рекламе против своей бесплатной ссылки закрыт, автор на странице назван, решения по рекламной сети и слою стройки приняты.</p>
+    <h2>Что нужно решить владельцу и заказчику</h2>
+    <p>Всё остальное уже решено: приоритеты утверждены, доступы есть, задание исполнителю собрано, автор на странице назван.</p>
     <ul>
-      <li><strong>Владелец, открыто:</strong> где живёт направление «капитальный ЦОД». АйТек его проектирует и строит, спрос под ним измерен - «строительство центра обработки данных» 389 запросов в месяц, «стоимость строительства цод» 57, «стоимость проектирования цод» 39. Из кампании по контейнерным ЦОД слой убираем, но как направление он остаётся без дома: нужна своя посадочная и своя кампания.</li>
-      <li><strong>Заказчик:</strong> ограничения по географии поставки - куда готов везти и монтировать. Расширение на Россию принято осознанно, но риск не закрыт.</li>
-      <li><strong>Заказчик:</strong> срок от первого обращения до договора; сколько обращений доходит до договора; считаем ли каналом только заявки с сайта или звонки и письма тоже.</li>
-      <li><strong>Заказчик:</strong> чей телефон ставить в визитку рекламного объявления - общий по сайту или подразделения инженерных систем.</li>
+      <li><strong>Владельцу:</strong> где живёт направление «капитальный ЦОД». АйТек его проектирует и строит, и спрос под ним измерен: «строительство центра обработки данных» - 389 запросов в месяц, «стоимость строительства цод» - 57, «стоимость проектирования цод» - 39. Из рекламы контейнерных ЦОД эти запросы убираем, чтобы не смешивать два разных товара, но как направление оно остаётся без своей страницы и своей кампании.</li>
+      <li><strong>Заказчику:</strong> куда компания готова везти и монтировать. Расширение рекламы на всю Россию принято осознанно, но если в дальние регионы возить невыгодно, географию надо ограничить до запуска, а не после.</li>
+      <li><strong>Заказчику:</strong> сколько времени проходит от первого обращения до договора и сколько обращений до него доходит. Без этих двух чисел мы не можем сказать, окупается канал или нет.</li>
+      <li><strong>Заказчику:</strong> чей телефон ставить в рекламное объявление - общий по сайту или подразделения инженерных систем.</li>
     </ul>
   </div>
 
   <footer>
-    <p>Основания плана - измерения 18.09.2026: спрос по слоям (Wordstat через API, двойной счёт снят по ядрам), бесплатный поиск и позиции страницы (Яндекс Вебмастер), содержание страницы, ответы Яндекс Нейро на десять вопросов покупателя, расход рекламы и заявки (API Директа и Метрики). Расход указан с НДС, без учёта скидок.</p>
-    <p>Все числа получены запросами к сервисам напрямую и повторяются скриптами проекта. Реклама здесь - два шага из тринадцати: это и есть главный вывод плана.</p>
+    <p>План опирается на измерения 18.09.2026: частота запросов через Wordstat, позиции и показы страницы из Яндекс Вебмастера, содержание страницы, ответы Яндекс Нейро на десять вопросов покупателя, расход рекламы и заявки из API Яндекс Директа и Метрики. Расход указан с НДС, без учёта скидок.</p>
+    <p>Все числа получены запросами к сервисам напрямую и повторяются скриптами проекта. Реклама в этом плане - один шаг из двенадцати: это и есть его главный вывод.</p>
   </footer>
 
 </div>
